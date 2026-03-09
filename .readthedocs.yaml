@@ -8,13 +8,6 @@ build:
   tools:
     python: "3.11"
     nodejs: "20"
-
-python:
-  install:
-    - pip
-    - pip:
-        - jupyter-book
-
-build:
   commands:
+    - pip install jupyter-book
     - jupyter-book build docs
