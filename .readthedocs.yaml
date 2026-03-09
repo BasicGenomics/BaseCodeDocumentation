@@ -9,4 +9,7 @@ build:
     python: "3.11"
   commands:
     - pip install jupyter-book
-    - jupyter-book build docs
+    - myst build docs
+
+python:
+  install: []
