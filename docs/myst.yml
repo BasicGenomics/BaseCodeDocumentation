@@ -1,0 +1,28 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: d69a6d7d-eadf-4a52-97d6-3daf6880ddca
+  # title:
+  # description:
+  # keywords: []
+  # authors: []
+  github: https://github.com/BasicGenomics/BaseCodeRNA
+  resources:
+    - images
+    - resources
+  toc:
+    - file: index.md
+    - file: preparation.md
+    - file: input.md
+    - file: pipeline.md
+    - file: downstream.md
+    # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+site:
+  title: BaseCode RNA Pipeline
+  template: book-theme
+  options:
+  #   favicon: favicon.ico
+    logo: images/BasicGenomics.png
+    theme: shibuya
+    footer: "BaseCode RNA Pipeline Documentation"
+    version: 1
