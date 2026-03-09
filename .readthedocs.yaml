@@ -8,8 +8,8 @@ build:
   tools:
     python: "3.11"
     nodejs: "20"
+
   commands:
     - pip install jupyter-book
-    - mkdir -p $READTHEDOCS_OUTPUT/html
-    - jupyter-book build docs --html
-    - cp -r docs/_build/html/* $READTHEDOCS_OUTPUT/html/
+    - cd docs
+    - jupyter-book build
