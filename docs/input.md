@@ -1,12 +1,13 @@
 #  Input requirements
+
 ## Input overview
-The BaseCode Processing Pipeline is designed to process RNA BaseCode data. This section details the necessary input files required to run the pipeline.
+The BaseCode Processing Pipeline is designed to process RNA BaseCode sequencing data. This section details the necessary input files required to run the pipeline.
 - FASTQ files (*Required*): BaseCode data is recommended to be sequenced paired-end and the BaseCode Processing Pipeline requires at least two fastq files.
 - Sample sheet file (*Required*): The sample sheet contains the information needed to properly process each sequenced sample. 
-- Configuration file (*Required*): The configuration file points the pipeline to the required input files and defines other parameters needed to run the pipeline. 
 - Genome reference and annotations (*Required*): This set of files are needed to map the sequencing reads to the reference genome and specify genomic intervals for the reconstruction step.
+- Configuration file (*Required*): The configuration file points the pipeline to the required input files and defines other parameters needed to run the pipeline. 
 
-The FASTQ file locations and the sample sheet location are specified in the configuration file, which is placed in the `config/` subfolder and named `config.yaml`. The directory containing the genome reference and annotations is additionally specified by mounting the directory when running the Docker image (see {doc}`Starting the BaseCode Processing Pipeline <pipeline>`).
+The FASTQ file locations and the sample sheet location are specified in the configuration file, which is placed in the `config/` folder and named `config.yaml`. The directory containing the genome reference and annotations is additionally specified by mounting the directory when running the Docker image (see {doc}`Starting the BaseCode Processing Pipeline <pipeline>`).
 
 The proposed directory structure:
 ```
@@ -31,13 +32,13 @@ The BaseCode Processing Pipeline expects FASTQ files obtained directly from a co
 #### MGI sequencers
 The MGI family of sequencers output two FASTQ files for each lane, `*_read_1.fq.gz` and `*_read_2.fq.gz`, where the indexing sequences are appended to the end of read 2.
 
-If a sample has been sequenced across multiple lanes of the sequencing run, the FASTQ files should be concatenated before the BaseCode Processing Pipeline is started. The easiest way to achieve this is using cat in the Linux command line:
+If a sample has been sequenced across multiple lanes of the sequencing run, the FASTQ files should be concatenated before the BaseCode Processing Pipeline is started. The easiest way to achieve this is using the following in the Linux command line:
 ```
 cat L01/*_read_1.fq.gz L02/*_read_1.fq.gz > L01_L02_read_1.fq.gz
 cat L01/*_read_2.fq.gz L02/*_read_2.fq.gz > L01_L02_read_2.fq.gz
 ```
 #### Illumina sequencers
-Illumina sequencing platforms generate four FASTQ files, paired-end read files, `_R1.fastq.gz` and `_R2.fastq.gz`, and separate index read files, `_I1.fastq.gz` and `_I2.fastq.gz`, containing the indexing sequences. Illumina sequencing data are typically demultiplexed post-run. For downstream processing with the BaseCode Processing Pipeline, FASTQ files should be concatenated before the BaseCode Processing Pipeline is started. The easiest way to achieve this is using cat in the Linux command line:
+Illumina sequencing platforms generate four FASTQ files, paired-end read files, `_R1.fastq.gz` and `_R2.fastq.gz`, and separate index read files, `_I1.fastq.gz` and `_I2.fastq.gz`, containing the indexing sequences. Illumina sequencing data are typically demultiplexed post-run. For downstream processing with the BaseCode Processing Pipeline, FASTQ files should be concatenated before the BaseCode Processing Pipeline is started. The easiest way to achieve this is using the following in the Linux command line:
 ```
 cat *_R1.fq.gz > R1.fq.gz
 cat *_R2.fq.gz > R2.fq.gz
@@ -163,8 +164,63 @@ mkdir config
 cp /path/to/SampleSheet.xlsx config/
 ```
 
+### Genome reference and annotations
+The BaseCode Processing Pipeline requires a set of files related to read mapping and gene assignment.
+Files needed for read mapping and gene assignment:
+
+| File | Description |
+|----------------------|-------------|
+| **reference.fa** | Reference genome sequence in FASTA format. |
+| **genomeref*** |Pre-built indexes for HISAT-3N. |
+| **geneannotations*** | Gene annotations with exon and intron information (GFF3). |
+
+#### Basic Genomics Reference Storage
+For an overview of all genome reference and annotation files provided by Basic Genomics, please visit: [**Basic Genomics Reference Storage**](ftp://u473420-sub23@u473420-sub23.your-storagebox.de)
+
+Access credentials:
+- **Username:** `u473420-sub23`
+- **Server:** `u473420-sub23.your-storagebox.de`
+- **Password:** `TBA`
+
+Available genome reference and annotations:  
+- Homo sapiens
+- Mus musculus  
+- Rattus norvegicus        
+- Danio rerio  
+- Caenorhabditis elegans
+- Drosophila melanogaster  
+
+<img src="images/References.png" width="800">
+
+> **IMPORTANT** To use these resources, the downloaded folder **must** be saved to a folder named `genome_references/`. We recommend calling the parent folder `BaseCode_resources/`.
+
+Example installation using the Linux command line:
+```
+mkdir BaseCode_resources
+cd BaseCode_resources
+mkdir genome_references
+cd genome_references
+sftp u473420-sub23@u473420-sub23.your-storagebox.de
+cd genome_references
+get -r Homo_sapiens
+```
+
+You can alternatively access the reference files using any SFTP client (e.g. `Cyberduck`, `FileZilla`).
+
+> **NOTE** The path to the parent folder `.../BaseCode_resources/genome_references/` is specified using Docker when the BaseCode Processing Pipeline is started (see {doc}`Starting the BaseCode Processing Pipeline <pipeline>`), and the name of the folder (e.g. Homo_sapiens) is specified in the configuration file (see [Configuration file](#configuration-file)).
+
+#### Generating custom genome reference and annotations
+If your genome reference and annotation files are not provided by Basic Genomics, you can generate them using the [**BaseCodeGenerate**](https://github.com/BasicGenomics/BaseCodeGenerate/tree/conda) pipeline. 
+
+The pipeline prepares all required reference assets for running BaseCode Processing Pipeline with a custom genome reference and annotations. 
+To run the BaseCodeGenerate pipeline, the following are required:
+- A reference genome sequence in FASTA format. 
+- An annotation file in GTF/GFF3 format.
+
+We recommend fetching reference genome and annotation files from either [Ensembl](https://www.ensembl.org/info/data/ftp/index.html) or [GENCODE](https://www.gencodegenes.org/).
+
 ### Configuration file
-The configuration file (`config/config.yaml`) contains all the information needed to run the <b>BaseCode Processing Pipeline</b> and uses the YAML language. The configuration file mainly specifies the name of the processing run, sample sheet used, reference genome, and the FASTQ files used as input. See below for an exhaustive list of possible options.
+The configuration file (`config/config.yaml`) contains all the information needed to run the BaseCode Processing Pipeline and uses the YAML language. The configuration file mainly specifies the name of the processing run, sample sheet used, reference genome, and the FASTQ files used as input. See below for an exhaustive list of possible options.
 
 >**IMPORTANT** The paths specified in the configuration file are relative paths in the Docker container, not the paths on your host machine. The paths on your host machine are specified when running the BaseCode Processing Pipeline (see {doc}`Starting the BaseCode Processing Pipeline <pipeline>`).
 
@@ -184,7 +240,7 @@ In the following description, *Required* means the configuration option must be 
 |----------------------|-------------|
 | **name** | **Required.** String. Name of the processing run. |
 | **samplesheet** | **Required.** String. Path to the sample sheet file. Can either be a CSV or XLSX file. The path is relative to the BaseCode pipeline folder in the Docker image (e.g. `config/SampleSheet.xlsx`). |
-| **reference** | **Required.** String. Name of the folder in the specified `.../BaseCode_resources/genome_references/` path containing the required reference and annotation files. |
+| **reference** | **Required.** String. Name of the folder in the specified `.../BaseCode_resources/genome_references/` path containing the required genome reference and annotation files. |
 | **r1** | **Required.** String. Path to the Read 1 FASTQ file. Assumed to be compressed using gzip (`.fq.gz`). The path is relative to the BaseCode pipeline folder in the Docker image (e.g. `fastq/read_1.fq.gz`). |
 | **r2** | **Required.** String. Path to the Read 2 FASTQ file. Assumed to be compressed using gzip (`.fq.gz`). The path is relative to the BaseCode pipeline folder in the Docker image (e.g. `fastq/read_2.fq.gz`). |
 | **i1** | **Optional.** String. Path to the Index 1 FASTQ file. Commonly generated by Illumina sequencing platforms. If specified, the pipeline assumes all relevant indexing sequences come from `i1` and `i2`. Assumed to be compressed using gzip (`.fq.gz`). The path is relative to the BaseCode pipeline folder (e.g. `fastq/index_1.fq.gz`). |
@@ -202,62 +258,7 @@ In the following description, *Required* means the configuration option must be 
 | **params: cutadapt** | **Optional.** String. Parameters used in the trim_fastq step, passed to cutadapt. [**Default:** `-n 2 -m 25 -q 10 -a CTGTCTCTTATACACATCT -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -g TTTTTTTTTTTTTTTTTTTT -g GGAGGAGGAGAGAAGA -g AAAAAAAAAAAAAAAAAAAA -A CTGTCTCTTATACACATCT -A AAAAAAAAAAAAAAAAAAAA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT`]. |
 | **params: hisat3n** | **Optional.** String. Parameters used in the map_reads step, passed to hisat-3n. [**Default:** `-k 5 --max-seeds 8 --score-min L,0,-0.5 --base-change G,A --no-temp-splicesite`]. |
 
-The configuration file must be placed in the `config/` subfolder:
+The configuration file **must** be placed in the `config/` subfolder:
 ```
 cp /path/to/config.yaml config/
 ```
-
-
-### Genome reference and annotations
-The BaseCode Processing Pipeline requires a set of files related to read mapping and gene assignment.
-Files needed for read mapping and gene assignment:
-
-| File | Description |
-|----------------------|-------------|
-| **reference.fa** | Reference genome sequence in FASTA format. |
-| **genomeref*** |Pre-built indexes for HISAT-3N. |
-| **geneannotations*** | Gene annotations with exon and intron information (GFF3). |
-
-
-#### Basic Genomics reference storage
-For an overview of all reference genomes and annotation files provided by Basic Genomics, please visit: [Basic Genomics Reference Storage](ftp://u473420-sub23@u473420-sub23.your-storagebox.de)
-
-Access credentials:
-- **Username:** `u473420-sub23`
-- **Server:** `u473420-sub23.your-storagebox.de`
-- **Password:** `TBA`
-
-Available reference genomes and annotations:  
-- Homo sapiens
-- Mus musculus  
-- Rattus norvegicus        
-- Danio rerio  
-- Caenorhabditis elegans
-- Drosophila melanogaster  
-
-<img src="images/References.png" width="800">
-
-To use these resources, the downloaded folder must be saved to a folder named `genome_references/`. We recommend calling the parent folder `BaseCode_resources/`. Example installation using the Linux command line:
-```
-mkdir BaseCode_resources
-cd BaseCode_resources
-mkdir genome_references
-cd genome_references
-sftp u473420-sub23@u473420-sub23.your-storagebox.de
-cd genome_references
-get -r Homo_sapiens
-```
-
-You can alternatively access the reference files using any SFTP client (e.g. `Cyberduck`, `FileZilla`).
-
-> **NOTE** The path to the parent folder `.../BaseCode_resources/genome_references/` is specified using Docker when the BaseCode Processing Pipeline is started (see {doc}`Starting the BaseCode Processing Pipeline <pipeline>`), and the name of the folder (e.g. Homo_sapiens) is specified in the configuration file (see [Configuration file](#configuration-file)).
-
-#### Generating custom genome reference and annotations
-If your reference genome and annotation files are not provided by Basic Genomics, you can generate them using the [BaseCodeGenerate pipeline](https://github.com/BasicGenomics/BaseCodeGenerate/tree/conda). 
-
-The pipeline prepares all required reference assets for running BaseCode Processing Pipeline with a custom genome reference and annotations. 
-To run the BaseCodeGenerate pipeline, the following are required:
-- A reference genome sequence in FASTA format. 
-- An annotation file in GTF/GFF3 format.
-
-We recommend fetching reference genome and annotation files from either [Ensembl](https://www.ensembl.org/info/data/ftp/index.html) or [GENCODE](https://www.gencodegenes.org/).

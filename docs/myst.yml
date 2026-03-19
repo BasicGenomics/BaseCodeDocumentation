@@ -4,8 +4,7 @@ project:
   title: BaseCode Processing Pipeline
   description: Processing pipeline for RNA BaseCode sequencing data
   # keywords: []
-  authors:
-    - name: Basic Genomics
+  # authors: []
   github: https://github.com/BasicGenomics/BaseCodeDocumentation
   resources:
     - images
@@ -17,12 +16,13 @@ project:
     - file: input.md
     - file: pipeline.md
     - file: downstream.md
+    - file: output.md
 site:
   title: BaseCode
   template: book-theme
   options:
     logo: images/BasicGenomics.png
-    logo_dark: images/BasicGenomics.png
+    logo_dark: images/BasicGenomics_white.png
     #footer: "© 2026 Basic Genomics. All rights reserved."
     hide_footer_links: true
     style: _static/footer.css

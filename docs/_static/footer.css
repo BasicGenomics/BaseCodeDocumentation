@@ -6,6 +6,7 @@
   color: #555;
 }
 
+/* Links */
 .footer a {
   text-decoration: none;
   color: inherit;
@@ -15,7 +16,19 @@
   text-decoration: underline;
 }
 
+/* Headings */
 .footer strong {
   display: block;
   margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    border-top: 1px solid #444;
+    color: #ccc; 
+  }
+
+  .footer a {
+    color: #ddd;
+  }
 }

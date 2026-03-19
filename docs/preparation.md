@@ -1,4 +1,5 @@
 # Preparation
+
 ## System Requirements
 Minimum Specifications:
 - CPU: 12 physical cores (e.g. AMD Ryzen 9 5900X, Intel Xeon Silver 4310)
