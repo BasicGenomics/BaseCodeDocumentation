@@ -1,6 +1,6 @@
 # Overview
 
-## <span style="color:#583092">BaseCode Processing Pipeline</span>
+## BaseCode Processing Pipeline
 The main steps of the BaseCode Processing Pipeline:
 1.	<b>Process Sample Sheet</b>
 
