@@ -1,3 +1,8 @@
+
+footer div:has(a[href*="mystmd"]) {
+  display: none !important;
+}
+
 .footer {
   border-top: 1px solid #e5e5e5;
   margin-top: 3rem;
@@ -6,7 +11,6 @@
   color: #555;
 }
 
-/* Links */
 .footer a {
   text-decoration: none;
   color: inherit;
@@ -16,7 +20,6 @@
   text-decoration: underline;
 }
 
-/* Headings */
 .footer strong {
   display: block;
   margin-bottom: 0.5rem;
@@ -25,7 +28,7 @@
 @media (prefers-color-scheme: dark) {
   .footer {
     border-top: 1px solid #444;
-    color: #ccc; 
+    color: #ccc;
   }
 
   .footer a {
