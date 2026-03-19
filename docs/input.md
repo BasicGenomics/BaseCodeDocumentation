@@ -260,4 +260,4 @@ To run the BaseCodeGenerate pipeline, the following are required:
 - A reference genome sequence in FASTA format. 
 - An annotation file in GTF/GFF3 format.
 
-We recommend fetching reference genome and annotation files from either [Ensembl](https://www.ensembl.org/info/data/ftp/index.html)  or [GENCODE](https://www.gencodegenes.org/).
+We recommend fetching reference genome and annotation files from either [Ensembl](https://www.ensembl.org/info/data/ftp/index.html) or [GENCODE](https://www.gencodegenes.org/).

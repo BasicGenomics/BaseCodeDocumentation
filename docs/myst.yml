@@ -1,26 +1,31 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  title: BaseCode
-  # description:
+  title: BaseCode Processing Pipeline
+  description: Processing pipeline for RNA BaseCode sequencing data
   # keywords: []
-  # authors: []
+  authors:
+    - name: Basic Genomics
   github: https://github.com/BasicGenomics/BaseCodeDocumentation
   resources:
     - images
     - resources
   toc:
     - file: index.md
+    - file: overview.md
     - file: preparation.md
     - file: input.md
     - file: pipeline.md
     - file: downstream.md
-    # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
 site:
-  title: BaseCode Documentation
+  title: BaseCode
   template: book-theme
   options:
-  #   favicon: favicon.ico
     logo: images/BasicGenomics.png
-    footer: "BaseCode Documentation"
-    version: 1
+    logo_dark: images/BasicGenomics.png
+    #footer: "© 2026 Basic Genomics. All rights reserved."
+    hide_footer_links: true
+    style: _static/footer.css
+  parts:
+    footer: footer.md
+    
