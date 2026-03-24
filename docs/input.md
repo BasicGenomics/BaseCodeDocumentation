@@ -177,10 +177,10 @@ Files needed for read mapping and gene assignment:
 #### Basic Genomics Reference Storage
 Genome reference and annotation files provided by Basic Genomics are available upon request.
 
-```{button-link} mailto:blaz.oder@basic-genomics.com?subject=Request%20access%20to%20Basic%20Genomics%20Reference%20Storage&body=Hi%20Blaz,%0A%0AI%20would%20like%20to%20request%20access%20to%20the%20Basic%20Genomics%20Reference%20Storage.%0A%0AName:%20%0AAffiliation:%20%0A%0APlease%20let%20me%20know%20if%20any%20additional%20information%20is%20required.%0A%0AThank%20you%20very%20much.%0A%0ABest%20regards,%0A
-:color: primary
-:shadow:
-🔐 Request access to reference storage
+<a href="mailto:blaz.oder@basic-genomics.com?subject=Request%20access%20to%20Basic%20Genomics%20Reference%20Storage&body=Hi%20Blaz,%0A%0AI%20would%20like%20to%20request%20access%20to%20the%20Basic%20Genomics%20Reference%20Storage.%0A%0AName:%20%0AAffiliation:%20%0A%0AThank%20you.%0A%0ABest%20regards,%0A"
+   style="display:inline-block;padding:12px 20px;background:#2563eb;color:white;text-decoration:none;border-radius:8px;font-weight:500;">
+  🔐 Request access to reference storage
+</a>
 
 Available genome reference and annotations:  
 - Homo sapiens
@@ -200,7 +200,6 @@ mkdir BaseCode_resources
 cd BaseCode_resources
 mkdir genome_references
 cd genome_references
-# Credentials will be provided after access request
 sftp <username>@<server>
 cd genome_references
 get -r Homo_sapiens
