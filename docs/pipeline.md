@@ -1,4 +1,4 @@
-# Starting the BaseCode Processing Pipeline
+# Starting the Pipeline
 
 To start the BaseCode Processing Pipeline, a configuration file must be specified, containing the paths to the FASTQ files, sample sheet, and reference genome. In addition, four directories on the host machine must be mounted into the Docker container. The required mount points are:
 - Path to the results folder, which will contain all BaseCode Processing Pipeline output.

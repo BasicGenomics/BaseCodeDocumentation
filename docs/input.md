@@ -175,12 +175,12 @@ Files needed for read mapping and gene assignment:
 | **geneannotations*** | Gene annotations with exon and intron information (GFF3). |
 
 #### Basic Genomics Reference Storage
-For an overview of all genome reference and annotation files provided by Basic Genomics, please visit: [**Basic Genomics Reference Storage**](ftp://u473420-sub23@u473420-sub23.your-storagebox.de)
+Genome reference and annotation files provided by Basic Genomics are available upon request.
 
-Access credentials:
-- **Username:** `u473420-sub23`
-- **Server:** `u473420-sub23.your-storagebox.de`
-- **Password:** `TBA`
+```{button-link} mailto:blaz.oder@basic-genomics.com?subject=Request%20access%20to%20Basic%20Genomics%20Reference%20Storage&body=Hi%20Blaz,%0A%0AI%20would%20like%20to%20request%20access%20to%20the%20Basic%20Genomics%20Reference%20Storage.%0A%0AName:%20%0AAffiliation:%20%0A%0APlease%20let%20me%20know%20if%20any%20additional%20information%20is%20required.%0A%0AThank%20you%20very%20much.%0A%0ABest%20regards,%0A
+:color: primary
+:shadow:
+🔐 Request access to reference storage
 
 Available genome reference and annotations:  
 - Homo sapiens
@@ -200,7 +200,8 @@ mkdir BaseCode_resources
 cd BaseCode_resources
 mkdir genome_references
 cd genome_references
-sftp u473420-sub23@u473420-sub23.your-storagebox.de
+# Credentials will be provided after access request
+sftp <username>@<server>
 cd genome_references
 get -r Homo_sapiens
 ```
