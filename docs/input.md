@@ -248,9 +248,6 @@ In the following description, *Required* means the configuration option must be 
 | **gene_identifier** | **Optional.** String. The gene identifier found in the 9th column of the GFF3 gene annotation files. [**Default:** `gene_name`]. |
 | **resource_dir** | **Optional.** String. Path to the resources directory in the Docker image. [**Default:** `/usr/local/app/resources/`]. |
 | **index_layout** | **Optional.** String. Specifies which parts of the indexing sequences should be used for sample demultiplexing. Should not be changed unless sequencing was performed with non-standard index sequencing cycles. [**Default:** `16:0-16`]. |
-| **umilen** | **Optional.** Integer. Specifies the length of the UMI found in the oligo-dT primer. **Note:** BaseCode Bulk does not contain a UMI. **Default:** `0`. |
-| **dtlen** | **Optional.** Integer. Length of the T-stretch found in the oligo-dT primer. [**Default:** `24`]. |
-| **dt_cutoff** | **Optional.** Integer. Minimum number of T nucleotide detected in the T-stretch to be considered a 3'-read. [**Default:** `16`]. |
 | **ts_sequence** | **Optional.** String. The sequenced part of the template-switching oligo (TSO). Used to identify 5'-reads. [**Default:** `TCTTCTCTCCTCCTCC`]. |
 | **ts_pad** | **Optional.** Integer. Number of bases to trim after the detected TSO sequence. [**Default:** `3`]. |
 | **ts_cutoff** | **Optional.** Integer. Maximum number of mismatches to the TSO sequence to be considered a 5'-read. [**Default:** `5`]. |
