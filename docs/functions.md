@@ -1,5 +1,5 @@
 # BAM file tags
-This guide demonstrates how to sort, filter, and color reads by custom BAM tags present in the BAM file processed with the BaseCode Processing Pipeline.
+This guide demonstrates how to sort, filter, and color reads by custom tags present in the BAM file processed with the BaseCode Processing Pipeline.
 
 ---
 
@@ -27,7 +27,7 @@ The processed data BAM file contains the following tags:
 ### Prerequisites
 
 ```bash
-# Install samtools. We recommend using conda for this:
+# Install samtools. We recommend using conda for this.
 conda install bioconda::samtools
 ```
 
@@ -90,7 +90,7 @@ IGV allows reads to be colored, grouped, and sorted by any BAM tag directly from
 
 ### Color by tag
 
-Assigns a unique color per unique tag value — useful for distinguishing samples (`SM`) at a glance.
+Assigns a unique color per unique tag value - useful for distinguishing samples (`SM`) at a glance.
 
 ```
 1. Load your BAM file in IGV
@@ -102,7 +102,7 @@ Assigns a unique color per unique tag value — useful for distinguishing sample
 
 ### Group by tag
 
-Stacks reads into separate rows per tag value — useful for separating samples (`SM`) within the same view.
+Stacks reads into separate rows per tag value - useful for separating samples (`SM`) within the same view.
 
 ```
 1. Right-click on the read track
@@ -113,7 +113,7 @@ Stacks reads into separate rows per tag value — useful for separating samples 
 
 ### Sort by tag
 
-Orders reads within the view by tag value — useful for comparing numeric tags like `NR` (number of reads stitched) or `FC` (5' read count).
+Orders reads within the view by tag value - useful for comparing numeric tags like `NR` (number of reads stitched) or `FC` (5' read count).
 
 ```
 1. Right-click on the read track
