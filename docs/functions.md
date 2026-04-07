@@ -17,7 +17,7 @@ The processed data BAM file contains the following tags:
 | `IC` | Integer| Number of internal reads           |
 | `TC` | Integer| Number of 3' reads                 |
 
-## Vignette 1: Splitting BAM by sample (`SM` tag)
+## Splitting BAM by sample (`SM` tag)
 
 ### Prerequisites
 
@@ -76,7 +76,7 @@ for f in *.bam; do
 done
 ```
 
-## Vignette 2: IGV — visualizing reads by tag
+## IGV — visualizing reads by tag
 IGV allows reads to be colored, grouped, and sorted by any BAM tag directly from the GUI. This is useful for visually inspecting assignments, barcodes, or reconstruction results without writing any code.
 
 ### Color by tag
