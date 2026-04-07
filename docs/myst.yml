@@ -16,6 +16,7 @@ project:
     - file: input.md
     - file: pipeline.md
     - file: output.md
+    - file: functions.md
     - file: downstream.md
 site:
   title: BaseCode
