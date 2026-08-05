@@ -2,12 +2,12 @@
 
 ## Input overview
 The BaseCode Processing Pipeline is designed to process RNA BaseCode sequencing data. This section details the necessary input files required to run the pipeline.
-- FASTQ files (*Required*): BaseCode data is recommended to be sequenced paired-end and the BaseCode Processing Pipeline requires at least two fastq files.
-- Sample sheet file (*Required*): The sample sheet contains the information needed to properly process each sequenced sample. 
-- Genome reference and annotations (*Required*): This set of files are needed to map the sequencing reads to the reference genome and specify genomic intervals for the reconstruction step.
-- Configuration file (*Required*): The configuration file points the pipeline to the required input files and defines other parameters needed to run the pipeline. 
+- **[FASTQ files](#input-fastq)**: BaseCode data is recommended to be sequenced paired-end, so at least two FASTQ files are required.
+- **[Sample sheet file](#input-samplesheet)**: The sample sheet contains the information needed to properly process each sequenced sample.
+- **[Genome reference and annotations](#input-reference)**: This set of files are needed to map the sequencing reads to the reference genome and specify genomic intervals for the reconstruction step.
+- **[Configuration file](#input-config)**: The configuration file points the pipeline to the required input files and defines other parameters needed to run the pipeline.
 
-The FASTQ file locations and the sample sheet location are specified in the configuration file, which is placed in the `config/` folder and named `config.yaml`. The directory containing the genome reference and annotations is additionally specified by mounting the directory when running the Docker image (see {doc}`Starting the BaseCode Processing Pipeline <pipeline>`).
+The FASTQ file locations and the sample sheet location are specified in the configuration file, which is placed in the `config/` folder and named `config.yaml`. The directory containing the genome reference and annotations is additionally specified by mounting the directory when running the Docker image (see [Starting the Pipeline](pipeline.md)).
 
 The proposed directory structure:
 ```
@@ -16,7 +16,7 @@ The proposed directory structure:
 │     ├─ config.yaml
 │     ├─ SampleSheet.xlsx
 │  ├─ fastq/
-│  ├─ results/ 	   	    ⟵ Results of BaseCode Processing Pipeline will appear here.
+│  ├─ results/ 	   	    ⟵ results of the BaseCode Processing Pipeline appear here
 ├─ BaseCode_resources/
 │  ├─ genome_references/
 │     ├─ Homo_sapiens/
@@ -26,6 +26,7 @@ The proposed directory structure:
 │     ├─ ...
 ```
 
+(input-fastq)=
 ### FASTQ files
 The BaseCode Processing Pipeline expects FASTQ files obtained directly from a compatible sequencer (i.e. MGI DNBSEQ-G99, MGI DNBSEQ-G400, Illumina NovaSeq X Series) without any preprocessing.
 
@@ -46,15 +47,14 @@ cat *_I1.fq.gz > I1.fq.gz
 cat *_I2.fq.gz > I2.fq.gz
 ```
 
-The FASTQ files are recommended to be placed in the `fastq/` subfolder:
+The FASTQ files can be kept anywhere, as long as the folder holding them is mounted correctly. This documentation keeps them in a `fastq/` subfolder:
 ```
 mkdir BaseCode 
 cd BaseCode
 mkdir fastq
 cp /path/to/fastqs_files fastq/
 ```
-> **NOTE** FASTQ files may be located in any directory, as long as the correct path is provided appropriately in the configuration file when running the Docker container (see {doc}`Starting the BaseCode Processing Pipeline <pipeline>`).
-
+(input-samplesheet)=
 ### Sample sheet
 The sample sheet is supplied in the form of an Excel Workbook (XLSX) file with information for each sample. The sample sheet contains 5 required columns and 1 optional column. A sample sheet template can be found here: [SampleSheet.xlsx](resources/SampleSheet.xlsx).
 
@@ -158,12 +158,13 @@ Idx_Rv2_4
 </tbody>
 </table>
 
-The sample sheet is recommended to be placed in the `config/` subfolder:
+The sample sheet can be kept anywhere in the mounted configuration folder. This documentation keeps it in the `config/` subfolder alongside the configuration file:
 ```
 mkdir config
 cp /path/to/SampleSheet.xlsx config/
 ```
 
+(input-reference)=
 ### Genome reference and annotations
 The BaseCode Processing Pipeline requires a set of files related to read mapping and gene assignment.
 Files needed for read mapping and gene assignment:
@@ -178,7 +179,7 @@ Files needed for read mapping and gene assignment:
 Genome reference and annotation files provided by Basic Genomics are available upon request.
 
 <a href="mailto:info@basic-genomics.com?subject=Request%20access%20to%20Basic%20Genomics%20Reference%20Storage&body=Hi,%0A%0AI%20would%20like%20to%20request%20access%20to%20the%20Basic%20Genomics%20Reference%20Storage.%0A%0APlease%20let%20me%20know%20how%20to%20proceed.%0A%0AKind%20regards,%0A"
-   style="display:inline-block;padding:12px 20px;background:#2563eb;color:white;text-decoration:none;border-radius:8px;font-weight:500;">
+   class="brand-button">
   Request access to reference storage
 </a>
 
@@ -188,11 +189,12 @@ Available genome reference and annotations:
 - Rattus norvegicus        
 - Danio rerio  
 - Caenorhabditis elegans
-- Drosophila melanogaster  
+- Drosophila melanogaster
+- Arabidopsis thaliana
 
 <img src="images/References.png" width="800">
 
-> **IMPORTANT** To use these resources, the downloaded folder **must** be saved to a folder named `genome_references/`. We recommend calling the parent folder `BaseCode_resources/`.
+> **IMPORTANT** The downloaded species folder **must** sit inside a folder named `genome_references/`. The parent folder can be called anything, since it is the folder you mount when starting the pipeline; this documentation calls it `BaseCode_resources/`. The species folder name (e.g. `Homo_sapiens`) is what you set as `reference` in the [configuration file](#input-config).
 
 Example installation using the Linux command line:
 ```
@@ -207,22 +209,24 @@ get -r Homo_sapiens
 
 You can alternatively access the reference files using any SFTP client (e.g. `Cyberduck`, `FileZilla`).
 
-> **NOTE** The path to the parent folder `.../BaseCode_resources/genome_references/` is specified using Docker when the BaseCode Processing Pipeline is started (see {doc}`Starting the BaseCode Processing Pipeline <pipeline>`), and the name of the folder (e.g. Homo_sapiens) is specified in the configuration file (see [Configuration file](#configuration-file)).
-
 #### Generating custom genome reference and annotations
-If your genome reference and annotation files are not provided by Basic Genomics, you can generate them using the [**BaseCodeGenerate**](https://github.com/BasicGenomics/BaseCodeGenerate/tree/conda) pipeline. 
+If your genome reference and annotation files are not provided by Basic Genomics, you can generate them using the [**BaseCodeGenerate**](https://github.com/BasicGenomics/BaseCodeGenerate/tree/conda) tool.
 
-The pipeline prepares all required reference assets for running BaseCode Processing Pipeline with a custom genome reference and annotations. 
-To run the BaseCodeGenerate pipeline, the following are required:
+It prepares all required reference assets for running the BaseCode Processing Pipeline with a custom genome reference and annotations.
+To run BaseCodeGenerate, the following are required:
 - A reference genome sequence in FASTA format. 
 - An annotation file in GTF/GFF3 format.
 
 We recommend fetching reference genome and annotation files from either [Ensembl](https://www.ensembl.org/info/data/ftp/index.html) or [GENCODE](https://www.gencodegenes.org/).
 
+(input-config)=
 ### Configuration file
 The configuration file (`config/config.yaml`) contains all the information needed to run the BaseCode Processing Pipeline and uses the YAML language. The configuration file mainly specifies the name of the processing run, sample sheet used, reference genome, and the FASTQ files used as input. See below for an exhaustive list of possible options.
 
->**IMPORTANT** The paths specified in the configuration file are relative paths in the Docker container, not the paths on your host machine. The paths on your host machine are specified when running the BaseCode Processing Pipeline (see {doc}`Starting the BaseCode Processing Pipeline <pipeline>`).
+Every path in the configuration file is written as it appears **inside the Docker container**, not as it appears on your host machine. The host paths are given separately, by the mounts used to start the pipeline (see [Starting the Pipeline](pipeline.md)). So `samplesheet: 'config/SampleSheet.xlsx'` below refers to the mounted configuration folder, whatever that folder is called on your machine.
+
+The [configuration builder](config-builder.md) can generate this file, and the matching
+`docker run` command, from a form.
 
 Example configuration file (`config.yaml`):
 ```
@@ -246,8 +250,9 @@ In the following description, *Required* means the configuration option must be 
 | **i1** | **Optional.** String. Path to the Index 1 FASTQ file. Commonly generated by Illumina sequencing platforms. If specified, the pipeline assumes all relevant indexing sequences come from `i1` and `i2`. Assumed to be compressed using gzip (`.fq.gz`). The path is relative to the BaseCode pipeline folder (e.g. `fastq/index_1.fq.gz`). |
 | **i2** | **Optional.** String. Path to the Index 2 FASTQ file. Commonly generated by Illumina sequencing platforms. If specified, the pipeline assumes all relevant indexing sequences come from `i1` and `i2`. Assumed to be compressed using gzip (`.fq.gz`). The path is relative to the BaseCode pipeline folder (e.g. `fastq/index_2.fq.gz`). |
 | **gff_gene_identifier** | **Optional.** String. The gene identifier found in the 9th column of the GFF3 gene annotation files. [**Default:** `gene_id`]. |
+| **mode** | **Optional.** String, either `basic` or `comprehensive`. How much quality control detail the run keeps. `comprehensive` adds detailed per-stage QC tables on top of the standard set. [**Default:** `basic`]. |
 
-The configuration file **must** be placed in the `config/` subfolder:
+The file **must** be named `config.yaml`, since that is what the pipeline reads from the configuration folder you mount. The folder itself can be called anything; this documentation calls it `config/`:
 ```
 cp /path/to/config.yaml config/
 ```

@@ -6,7 +6,7 @@ Minimum Specifications:
 - Memory (RAM): 64 GB DDR4 or DDR5
 - Storage:
     - Primary drive: 1 TB NVMe SSD
-    - Secondary driv(*Optional*) : 2 TB HDD for additional storage
+    - Secondary drive (*Optional*): 2 TB HDD for additional storage
 - Operating System: Linux (e.g. Ubuntu 22.04 LTS or compatible distribution)
 
 Recommended Specifications:

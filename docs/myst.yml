@@ -1,25 +1,52 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  title: BaseCode Processing Pipeline
-  description: Processing pipeline for RNA BaseCode sequencing data
+  title: Basic Genomics Pipelines
+  description: Documentation for the Basic Genomics analysis pipelines
   # keywords: []
   # authors: []
-  github: https://github.com/BasicGenomics/BaseCode
   resources:
     - images
     - resources
   toc:
     - file: index.md
-    - file: overview.md
-    - file: preparation.md
-    - file: input.md
-    - file: pipeline.md
-    - file: output.md
-    - file: functions.md
-    - file: downstream.md
+    - file: how-it-works.md
+    - title: BaseCode Processing Pipeline
+      children:
+        - file: overview.md
+        - file: preparation.md
+        - file: input.md
+        - file: pipeline.md
+        - file: output.md
+        - file: functions.md
+        - file: downstream.md
+    - title: BaseCode IsoQuant Pipeline
+      children:
+        - file: isoquant.md
+        - file: isoquant-input.md
+        - file: isoquant-pipeline.md
+        - file: isoquant-output.md
+        - file: isoquant-tags.md
+    - file: config-builder.md
+    - file: vignettes.md
+      children:
+        - file: vignette-bam-tags.md
+    - file: faq.md
+    - file: citation.md
+    - file: containers.md
+    - title: Legal
+      children:
+        - file: legal.md
+        - title: BaseCode Processing Pipeline
+          children:
+            - file: third-party.md
+            - file: licence-texts.md
+        - title: BaseCode IsoQuant Pipeline
+          children:
+            - file: third-party-isoquant.md
+            - file: licence-texts-isoquant.md
 site:
-  title: BaseCode
+  title: Basic Genomics Pipelines
   template: book-theme
   options:
     logo: images/BasicGenomics.png
@@ -27,7 +54,7 @@ site:
     favicon: images/BasicGenomics_icon.png
     #footer: "© 2026 Basic Genomics. All rights reserved."
     hide_footer_links: true
-    style: _static/footer.css
+    style: _static/theme.css
   parts:
     footer: footer.md
     

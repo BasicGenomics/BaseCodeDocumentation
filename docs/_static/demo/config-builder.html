@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BaseCode configuration builder</title>
+<style>
+  :root {
+    --pink:#EC008C; --pink-dark:#C4006A; --ink:#111317; --muted:#5A606B;
+    --rule:#E3E6EA; --surface:#F6F7F9; --page:#FFFFFF; --code:#F6F7F9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#F2F2F2; --muted:#B6BEC9; --rule:#2E3238;
+            --surface:#1A1D23; --page:#111317; --code:#16191E; --pink-dark:#FF66B3; }
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--page); }
+  body {
+    font-family:"Mona Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color:var(--ink); padding:16px 18px 22px; font-size:14px;
+  }
+  .tabs { display:flex; gap:.4rem; margin-bottom:1rem; flex-wrap:wrap; }
+  .tabs button {
+    font:inherit; font-size:.85rem; font-weight:500; cursor:pointer;
+    padding:.45rem .85rem; border-radius:7px; border:1px solid var(--rule);
+    background:var(--surface); color:var(--ink);
+  }
+  .tabs button[aria-selected="true"] { background:var(--pink); border-color:var(--pink); color:#fff; }
+  .cols { display:grid; grid-template-columns: 1fr 1fr; gap:1.2rem; align-items:start; }
+  @media (max-width: 880px) { .cols { grid-template-columns: 1fr; } }
+  fieldset { border:1px solid var(--rule); border-radius:8px; margin:0 0 .9rem; padding:.7rem .9rem 1rem; }
+  legend { font-size:.72rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--pink); padding:0 .35rem; }
+  .row { display:grid; grid-template-columns: 1fr auto; gap:.6rem; align-items:center; padding:.32rem 0; }
+  .row + .row { border-top:1px solid var(--rule); }
+  .name { font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:.82rem; }
+  .desc { display:block; color:var(--muted); font-size:.75rem; line-height:1.45; margin-top:.15rem; }
+  input[type=text], input[type=number], select {
+    font:inherit; font-size:.82rem; padding:.3rem .45rem; border-radius:6px;
+    border:1px solid var(--rule); background:var(--page); color:var(--ink); min-width:9.5rem;
+  }
+  input[type=checkbox] { width:1.05rem; height:1.05rem; accent-color:var(--pink); }
+  .out { position:sticky; top:8px; }
+  .outhead { display:flex; align-items:center; gap:.5rem; margin:.2rem 0 .35rem; }
+  .outhead h2 { font-size:.78rem; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin:0; font-weight:700; }
+  .copy {
+    font:inherit; font-size:.72rem; cursor:pointer; margin-left:auto;
+    padding:.25rem .6rem; border-radius:6px; border:1px solid var(--rule);
+    background:var(--surface); color:var(--ink);
+  }
+  .copy:hover { border-color:var(--pink); }
+  pre {
+    margin:0 0 1rem; padding:.7rem .8rem; background:var(--code);
+    border:1px solid var(--rule); border-radius:8px; overflow-x:auto;
+    font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size:.76rem; line-height:1.55; white-space:pre;
+  }
+  .note { color:var(--muted); font-size:.75rem; line-height:1.5; margin:.2rem 0 1rem; }
+  .changed { color:var(--pink-dark); font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="tabs" role="tablist">
+  <button role="tab" id="t-basecode" aria-selected="true">BaseCode Processing Pipeline</button>
+  <button role="tab" id="t-isoquant" aria-selected="false">BaseCode IsoQuant Pipeline</button>
+</div>
+
+<div class="cols">
+  <div id="form"></div>
+  <div class="out">
+    <div class="outhead"><h2 id="cfgname">config/config.yaml</h2>
+      <button class="copy" data-target="cfg">Copy</button></div>
+    <pre id="cfg"></pre>
+    <div class="outhead"><h2>docker run</h2>
+      <button class="copy" data-target="run">Copy</button></div>
+    <pre id="run"></pre>
+    <p class="note" id="note"></p>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Schema for each pipeline. Defaults mirror the values the pipelines fall
+  // back to when a key is omitted, so "only changed" output stays truthful.
+  const SCHEMA = {
+    basecode: {
+      label: "BaseCode Processing Pipeline",
+      dir: "BaseCode", cfgdir: "config", image: "basicgenomics/basecode:1.2.5",
+      mounts: [["results","/usr/local/BaseCode/results/"],
+               ["config","/usr/local/BaseCode/config/"],
+               ["RESOURCES","/usr/local/app/resources/"],
+               ["fastq","/usr/local/BaseCode/fastq/"]],
+      groups: [
+        ["Run and reference", [
+          ["name","str","TEST_RUN","Name of the processing run.",true],
+          ["reference","str","Homo_sapiens","Folder under genome_references/ holding the reference and annotation.",true],
+        ]],
+        ["Input files", [
+          ["samplesheet","str","config/SampleSheet.xlsx","Path to the sample sheet, CSV or XLSX.",true],
+          ["r1","str","fastq/read_1.fq.gz","Read 1 FASTQ, gzip compressed.",true],
+          ["r2","str","fastq/read_2.fq.gz","Read 2 FASTQ, gzip compressed.",true],
+          ["i1","str","","Index 1 FASTQ. Optional, common on Illumina.",false],
+          ["i2","str","","Index 2 FASTQ. Optional, common on Illumina.",false],
+        ]],
+        ["Options", [
+          ["gff_gene_identifier","str","gene_id","Gene identifier in column 9 of the GFF3.",false],
+          ["mode","enum:basic,comprehensive","basic","How much quality control detail to keep.",false],
+        ]],
+      ],
+    },
+    isoquant: {
+      label: "BaseCode IsoQuant Pipeline",
+      dir: "BaseCode", cfgdir: "config_isoquant", image: "basicgenomics/basecode_isoquant:1.4.1",
+      mounts: [["results","/usr/local/BaseCodeIsoQuant/results/"],
+               ["config_isoquant","/usr/local/BaseCodeIsoQuant/config/"],
+               ["RESOURCES","/usr/local/app/resources/"]],
+      groups: [
+        ["Run and reference", [
+          ["name","str","TEST_RUN","Must match the name used by the processing pipeline.",true],
+          ["reference","str","Homo_sapiens","Folder under genome_references/.",true],
+          ["read_group","str","tag:SM","BAM tag used to group reads per sample.",false],
+        ]],
+        ["Molecule preparation", [
+          ["full_length_only","bool",false,"Keep only molecules with both ends observed.",false],
+        ]],
+        ["Annotation collapsing", [
+          ["collapse_annotation","bool",true,"Collapse near-duplicate isoforms before use.",false],
+          ["collapse_mode","enum:chain,cds,chain_cds","cds","What counts as the same transcript body.",false],
+          ["collapse_representative","enum:canonical,longest","canonical","Which transcript to keep per group.",false],
+        ]],
+        ["BaseCode mode", [
+          ["basecode_max_gap","int",550,"Largest unsequenced gap to impute, in bp.",false],
+          ["basecode_keep_ambiguous_imputation","bool",true,"Keep molecules whose gap imputation was not unique.",false],
+          ["basecode_no_context_resolve","bool",false,"Disable context-constrained imputation.",false],
+          ["basecode_intron_resolve","bool",true,"Resolve by intron chain, ignoring terminal differences.",false],
+          ["basecode_end_resolve","bool",true,"Use validated ends to break containment ambiguity.",false],
+          ["basecode_correct","bool",false,"Also run IsoQuant's exon corrector. Experiments only.",false],
+        ]],
+        ["Assignment and quantification", [
+          ["data_type","str","pacbio_ccs","IsoQuant data type profile.",false],
+          ["matching_strategy","enum:exact,precise,default,loose","precise","How strictly splice sites must match.",false],
+          ["delta","str","auto","Allowed splice-site deviation in bp, or auto.",false],
+          ["transcript_quantification","str","unique_only","Which assignments count towards a transcript.",false],
+          ["gene_quantification","str","unique_splicing_consistent","Which assignments count towards a gene.",false],
+          ["model_construction_strategy","str","default_pacbio","How novel transcript models are built.",false],
+          ["polya_requirement","str","auto","How strictly a poly-A tail is required.",false],
+        ]],
+        ["Annotated BAM", [
+          ["annotate_bam","bool",false,"Write a BAM carrying the IsoQuant assignment tags.",false],
+          ["duplicate_mode","enum:first,best,all","all","How to record multi-isoform molecules.",false],
+          ["include_imputed","bool",false,"Rewrite CIGARs to the imputed structure.",false],
+        ]],
+        ["Variant support", [
+          ["assess_variant_support","bool",true,"Compute per-variant read support.",false],
+          ["variant_support_mode","enum:discovered,reference,both","both","Which transcript set to assess.",false],
+        ]],
+      ],
+    },
+  };
+
+  let current = "basecode";
+  const state = {};
+  for (const k in SCHEMA) {
+    state[k] = {};
+    SCHEMA[k].groups.forEach(([, opts]) => opts.forEach(([n, , d]) => state[k][n] = d));
+  }
+
+  const $ = id => document.getElementById(id);
+  const esc = v => String(v);
+
+  function control(pipe, [nm, type, def, desc, req]) {
+    const v = state[pipe][nm];
+    let inp;
+    if (type === "bool") {
+      inp = document.createElement("input");
+      inp.type = "checkbox"; inp.checked = !!v;
+      inp.onchange = () => { state[pipe][nm] = inp.checked; render(); };
+    } else if (type.startsWith("enum:")) {
+      inp = document.createElement("select");
+      type.slice(5).split(",").forEach(o => {
+        const op = document.createElement("option");
+        op.value = op.textContent = o; if (o === v) op.selected = true;
+        inp.appendChild(op);
+      });
+      inp.onchange = () => { state[pipe][nm] = inp.value; render(); };
+    } else {
+      inp = document.createElement("input");
+      inp.type = type === "int" ? "number" : "text";
+      inp.value = v === "" ? "" : esc(v);
+      inp.oninput = () => {
+        state[pipe][nm] = type === "int" ? (parseInt(inp.value, 10) || 0) : inp.value;
+        render();
+      };
+    }
+    return inp;
+  }
+
+  function renderForm() {
+    const s = SCHEMA[current], host = $("form");
+    host.innerHTML = "";
+    s.groups.forEach(([title, opts]) => {
+      const fs = document.createElement("fieldset");
+      const lg = document.createElement("legend"); lg.textContent = title; fs.appendChild(lg);
+      opts.forEach(o => {
+        const [nm, , def, desc, req] = o;
+        const row = document.createElement("div"); row.className = "row";
+        const left = document.createElement("div");
+        const changed = String(state[current][nm]) !== String(def);
+        left.innerHTML = '<span class="name' + (changed ? ' changed' : '') + '">' + nm +
+                         (req ? '</span>' : '</span>') +
+                         '<span class="desc">' + desc + '</span>';
+        row.appendChild(left);
+        row.appendChild(control(current, o));
+        fs.appendChild(row);
+      });
+      host.appendChild(fs);
+    });
+  }
+
+  function yamlValue(v) {
+    if (typeof v === "boolean") return v ? "True" : "False";
+    if (typeof v === "number") return String(v);
+    return /^[A-Za-z0-9_.\/:-]+$/.test(v) ? "'" + v + "'" : JSON.stringify(v);
+  }
+
+  function renderOutput() {
+    const s = SCHEMA[current];
+    const lines = [];
+    s.groups.forEach(([, opts]) => opts.forEach(([nm, , , , req]) => {
+      const v = state[current][nm];
+      if (v === "" && !req) return;                   // omit empty optional paths
+      lines.push(nm + ": " + yamlValue(v));
+    }));
+    $("cfgname").textContent = s.cfgdir + "/config.yaml";
+    $("cfg").textContent = lines.join("\n");
+
+    const run = ["docker run --rm --name " + (state[current].name || "RUN") + " \\"];
+    s.mounts.forEach(([host, dst]) => {
+      const src = host === "RESOURCES" ? "/path/to/BaseCode_resources/" : "$(pwd)/" + host + "/";
+      run.push("    --mount type=bind,src=" + src + ",dst=" + dst + " \\");
+    });
+    run.push("    " + s.image);
+    run.push("sudo chown -R user:group results/");
+    $("run").textContent = run.join("\n");
+
+    const other = current === "basecode" ? "isoquant" : "basecode";
+    $("note").textContent =
+      "name is currently '" + state[current].name + "'. Both pipelines must use the same name, " +
+      "otherwise the IsoQuant pipeline cannot find the BAM the processing pipeline produced.";
+    state[other].name = state[current].name;           // keep the two in step
+  }
+
+  function render() { renderForm(); renderOutput(); }
+
+  $("t-basecode").onclick = () => { current = "basecode"; sel(); };
+  $("t-isoquant").onclick = () => { current = "isoquant"; sel(); };
+  function sel() {
+    $("t-basecode").setAttribute("aria-selected", current === "basecode");
+    $("t-isoquant").setAttribute("aria-selected", current === "isoquant");
+    render();
+  }
+
+  document.querySelectorAll(".copy").forEach(b => {
+    b.onclick = () => {
+      navigator.clipboard.writeText($(b.dataset.target).textContent).then(() => {
+        const t = b.textContent; b.textContent = "Copied";
+        setTimeout(() => b.textContent = t, 1200);
+      });
+    };
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

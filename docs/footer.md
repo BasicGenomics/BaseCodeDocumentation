@@ -1,7 +1,10 @@
-:::{div} class="footer"
+:::{div}
+:class: footer
 
-Processing pipeline for RNA BaseCode sequencing data  
+Basic Genomics' software, products and services are for research use only and not for use in diagnostic procedures.  
 
-© 2026 [Basic Genomics](https://www.basic-genomics.com/) · All rights reserved
+© 2026 [Basic Genomics](https://www.basic-genomics.com/) · All rights reserved · [Legal notices](legal.md)
+
+Last updated 27 April 2026
 
 :::

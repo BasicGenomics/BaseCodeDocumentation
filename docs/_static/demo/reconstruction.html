@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How BaseCode reconstructs molecules</title>
+<style>
+  :root {
+    --pink:   #EC008C;
+    --purple: #583092;
+    --amber:  #D98A00;
+    --ink:    #111317;
+    --muted:  #5A606B;
+    --rule:   #E3E6EA;
+    --surface:#F6F7F9;
+    --grey:   #B9BEC6;
+    --page:   #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #F2F2F2; --muted: #B6BEC9; --rule: #2E3238;
+      --surface: #1A1D23; --grey: #6B7280; --page: #111317;
+      --purple: #B38DE2; --amber: #ECB22E;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--page); }
+  body {
+    font-family: "Mona Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    padding: 18px 18px 22px;
+  }
+  .stepline {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 4px;
+  }
+  .dot {
+    width: 26px; height: 26px; border-radius: 50%; flex: 0 0 auto;
+    display: grid; place-items: center;
+    background: var(--pink); color: #fff; font-weight: 700; font-size: .78rem;
+  }
+  h1 { font-size: 1.05rem; margin: 0; letter-spacing: -.01em; }
+  p.lead { margin: .5rem 0 .9rem; color: var(--muted); font-size: .9rem; line-height: 1.55; min-height: 3.1em; }
+  p.lead b { color: var(--ink); font-weight: 600; }
+  svg { width: 100%; height: auto; display: block; }
+  .controls { display: flex; gap: .5rem; align-items: center; margin-top: .9rem; flex-wrap: wrap; }
+  button {
+    font: inherit; font-size: .85rem; font-weight: 500; cursor: pointer;
+    padding: .5rem .95rem; border-radius: 7px; border: 1px solid var(--rule);
+    background: var(--surface); color: var(--ink);
+    transition: background .15s, border-color .15s, opacity .15s;
+  }
+  button:hover:not(:disabled) { border-color: var(--pink); }
+  button.primary { background: var(--pink); border-color: var(--pink); color: #fff; }
+  button.primary:hover:not(:disabled) { filter: brightness(1.08); }
+  button:disabled { opacity: .4; cursor: default; }
+  .hint { font-size: .8rem; color: var(--muted); margin-left: auto; }
+  .read { cursor: default; }
+  .clickable .read { cursor: pointer; }
+  .clickable .read:hover .body { stroke: var(--ink); stroke-width: 1.5; }
+  @media (prefers-reduced-motion: no-preference) {
+    .read, .molbar { transition: transform .55s cubic-bezier(.5,0,.2,1), opacity .4s; }
+    .tick { transition: opacity .35s, fill .35s; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stepline"><div class="dot" id="stepno">1</div><h1 id="steptitle"></h1></div>
+<p class="lead" id="steptext"></p>
+
+<svg id="stage" viewBox="0 0 720 300" role="img" aria-labelledby="steptitle"></svg>
+
+<div class="controls">
+  <button id="back">Back</button>
+  <button id="next" class="primary">Next</button>
+  <button id="reset">Start again</button>
+  <span class="hint" id="hint"></span>
+</div>
+
+<script>
+(function () {
+  const SVG = "http://www.w3.org/2000/svg";
+  const stage = document.getElementById("stage");
+  const COLS = ["var(--pink)", "var(--purple)", "var(--amber)"];
+
+  // Three molecules of the same transcript, each carrying its own pattern of
+  // mismatches left behind by reverse transcription.
+  // The positions are chosen so that every pair of overlapping reads shares
+  // marks inside the overlap: that shared pattern is the evidence linking
+  // them to the same molecule.
+  const PATTERNS = [
+    [12, 32, 42, 62, 72, 90],
+    [ 6, 36, 40, 66, 70, 85],
+    [20, 30, 44, 60, 74, 95]
+  ];
+
+  // Reads sampled from those molecules, deliberately shuffled. The spans
+  // overlap at 30-45 and 60-75, which is where the shared marks sit.
+  const READS = [
+    {m:0, s: 0, e:45}, {m:2, s:30, e:75}, {m:1, s:60, e:100},
+    {m:2, s: 0, e:45}, {m:0, s:60, e:100}, {m:1, s: 0, e:45},
+    {m:2, s:60, e:100}, {m:0, s:30, e:75}, {m:1, s:30, e:75},
+  ];
+
+  const X0 = 40, X1 = 690, LANE_H = 26, TOP = 62;
+  const px = u => X0 + (u / 100) * (X1 - X0);
+
+  let step = 0, revealed = new Set(), selected = null;
+
+  function el(n, a) { const e = document.createElementNS(SVG, n);
+    for (const k in a) e.setAttribute(k, a[k]); return e; }
+
+  function scatterY(i) { return TOP + i * LANE_H; }
+  function groupY(r) {
+    const order = READS.filter(x => x.m === r.m)
+                       .sort((a, b) => a.s - b.s).indexOf(r);
+    return TOP + r.m * (LANE_H * 3) + order * 8;
+  }
+
+  function draw() {
+    stage.innerHTML = "";
+    stage.classList.toggle("clickable", step === 2);
+
+    // transcript reference line
+    stage.appendChild(el("rect", {x: X0, y: 26, width: X1 - X0, height: 8,
+      rx: 4, fill: "var(--surface)", stroke: "var(--rule)"}));
+    const lab = el("text", {x: X0, y: 18, "font-size": 11, fill: "var(--muted)"});
+    lab.textContent = "one transcript";
+    stage.appendChild(lab);
+
+    // once a molecule is identified, join its shared marks so the matching
+    // pattern is visible across the reads that overlap
+    if (step === 2) {
+      [...revealed].forEach(m => {
+        PATTERNS[m].forEach(p => {
+          const ys = READS.map((r, i) => (r.m === m && p >= r.s && p <= r.e) ? scatterY(i) : null)
+                          .filter(v => v !== null);
+          if (ys.length < 2) return;
+          stage.appendChild(el("line", {x1: px(p), x2: px(p),
+            y1: Math.min(...ys) - 3, y2: Math.max(...ys) + 14,
+            stroke: COLS[m], "stroke-width": 1.5,
+            "stroke-dasharray": "3 3", opacity: .55}));
+        });
+      });
+    }
+
+    READS.forEach((r, i) => {
+      const g = el("g", {class: "read", "data-i": i});
+      const stitched = step >= 3;
+      const y = stitched ? groupY(r) : scatterY(i);
+      g.setAttribute("transform", `translate(0 ${y})`);
+
+      const known = step >= 2 && revealed.has(r.m);
+      const colour = known ? COLS[r.m] : "var(--grey)";
+
+      g.appendChild(el("rect", {class: "body", x: px(r.s), y: 0,
+        width: px(r.e) - px(r.s), height: 11, rx: 5.5, fill: colour, opacity: .9}));
+
+      // the mismatch pattern carried by this read
+      if (step >= 1) {
+        PATTERNS[r.m].forEach(p => {
+          if (p < r.s || p > r.e) return;
+          g.appendChild(el("rect", {class: "tick", x: px(p) - 1.5, y: -3,
+            width: 3, height: 17, rx: 1.5,
+            fill: known ? COLS[r.m] : "var(--ink)"}));
+        });
+      }
+      if (step === 2) g.addEventListener("click", () => pick(r.m));
+      stage.appendChild(g);
+    });
+
+    // the reconstructed synthetic long reads
+    if (step >= 3) {
+      [0, 1, 2].forEach(m => {
+        const y = TOP + m * (LANE_H * 3) + 3 * 8 + 6;
+        stage.appendChild(el("rect", {class: "molbar", x: px(0), y: y,
+          width: px(100) - px(0), height: 13, rx: 6.5, fill: COLS[m], opacity: .95}));
+        const t = el("text", {x: px(0), y: y + 27, "font-size": 11, fill: "var(--muted)"});
+        t.textContent = "BaseCode Synthetic Long Read " + (m + 1);
+        stage.appendChild(t);
+      });
+      stage.setAttribute("viewBox", "0 0 720 330");
+    } else {
+      stage.setAttribute("viewBox", "0 0 720 300");
+    }
+  }
+
+  function pick(m) {
+    revealed.add(m);
+    draw();
+    if (revealed.size === 3) {
+      document.getElementById("hint").textContent = "All three found. Continue.";
+      document.getElementById("next").disabled = false;
+    } else {
+      document.getElementById("hint").textContent =
+        revealed.size + " of 3 molecules identified";
+    }
+  }
+
+  const STEPS = [
+    ["Short reads", "Short-read sequencing gives you fragments of the transcript. On their own they are interchangeable: nothing here tells you which fragments came from the <b>same original RNA molecule</b>."],
+    ["The BaseCode", "Reverse transcription leaves a <b>molecule-specific pattern of mismatches</b>. Every read inherits the part of the pattern that falls inside it. The marks above are those mismatches."],
+    ["Match the patterns", "Where two reads overlap, reads from the same molecule carry <b>the same marks in the same places</b>. That shared pattern is the evidence. <b>Click any read</b> to pull out every other read matching it."],
+    ["Stitch", "Reads grouped to one molecule are stitched into a single full-length <b>BaseCode Synthetic Long Read</b>, with short-read accuracy along its whole length."]
+  ];
+
+  function render() {
+    document.getElementById("stepno").textContent = step + 1;
+    document.getElementById("steptitle").textContent = STEPS[step][0];
+    document.getElementById("steptext").innerHTML = STEPS[step][1];
+    document.getElementById("back").disabled = step === 0;
+    const next = document.getElementById("next");
+    next.textContent = step === STEPS.length - 1 ? "Done" : "Next";
+    next.disabled = step === STEPS.length - 1 || (step === 2 && revealed.size < 3);
+    document.getElementById("hint").textContent =
+      step === 2 && revealed.size < 3 ? revealed.size + " of 3 molecules identified" : "";
+    draw();
+  }
+
+  document.getElementById("next").onclick = () => { if (step < STEPS.length - 1) { step++; render(); } };
+  document.getElementById("back").onclick = () => { if (step > 0) { step--; render(); } };
+  document.getElementById("reset").onclick = () => { step = 0; revealed = new Set(); render(); };
+  render();
+})();
+</script>
+</body>
+</html>
