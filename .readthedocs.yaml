@@ -12,7 +12,7 @@ build:
   commands:
     - pip install jupyter-book
     # stamp the footer with the date of the commit being built
-    - sed -i "s/^Last updated .*/Last updated $(git log -1 --format=%cd --date=format:'%-d %B %Y')/" docs/footer.md
+    - python docs/_static/stamp_footer.py
     - cd docs && jupyter-book build --html
     - mkdir -p $READTHEDOCS_OUTPUT/html
     - cp -r docs/_build/html/* $READTHEDOCS_OUTPUT/html/
