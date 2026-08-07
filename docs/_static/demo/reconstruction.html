@@ -149,6 +149,9 @@
       const stitched = step >= 3;
       const y = stitched ? groupY(r) : scatterY(i);
       g.setAttribute("transform", `translate(0 ${y})`);
+      // once stitched, the short reads recede so the full-length read reads as
+      // the result rather than as one more bar among them
+      g.setAttribute("opacity", stitched ? .28 : 1);
 
       const known = step >= 2 && revealed.has(r.m);
       const colour = known ? COLS[r.m] : "var(--grey)";
@@ -174,8 +177,8 @@
       [0, 1, 2].forEach(m => {
         const y = TOP + m * (LANE_H * 3) + 3 * 8 + 6;
         stage.appendChild(el("rect", {class: "molbar", x: px(0), y: y,
-          width: px(100) - px(0), height: 13, rx: 6.5, fill: COLS[m], opacity: .95}));
-        const t = el("text", {x: px(0), y: y + 27, "font-size": 11, fill: "var(--muted)"});
+          width: px(100) - px(0), height: 13, rx: 6.5, fill: COLS[m], opacity: 1}));
+        const t = el("text", {x: px(0), y: y + 27, "font-size": 11, fill: COLS[m]});
         t.textContent = "BaseCode Synthetic Long Read " + (m + 1);
         stage.appendChild(t);
       });
@@ -201,7 +204,7 @@
     ["Short reads", "Short-read sequencing gives you fragments of the transcript. On their own they are interchangeable: nothing here tells you which fragments came from the <b>same original RNA molecule</b>."],
     ["The BaseCode", "Reverse transcription leaves a <b>molecule-specific pattern of mismatches</b>. Every read inherits the part of the pattern that falls inside it. The marks above are those mismatches."],
     ["Match the patterns", "Where two reads overlap, reads from the same molecule carry <b>the same marks in the same places</b>. That shared pattern is the evidence. <b>Click any read</b> to pull out every other read matching it."],
-    ["Stitch", "Reads grouped to one molecule are stitched into a single full-length <b>BaseCode Synthetic Long Read</b>, with short-read accuracy along its whole length."]
+    ["Stitch", "The reads from one molecule are merged into a single continuous sequence covering the <b>whole original RNA, end to end</b>. Every base still comes from a short read, so it keeps short-read accuracy across the full length. The short reads fade behind each <b>BaseCode Synthetic Long Read</b> below, so you can see how much further it reaches."]
   ];
 
   function render() {

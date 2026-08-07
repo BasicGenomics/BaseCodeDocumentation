@@ -62,7 +62,7 @@ annotation.
 
 </div>
 
-## Community
+## Community <span class="badge-new">New</span>
 
 <div class="community">
 
