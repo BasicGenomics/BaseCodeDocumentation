@@ -1,6 +1,6 @@
 # Third-party notices (BaseCode)
 
-**BaseCode Processing Pipeline**, version 1.2.5
+**BaseCode Processing Pipeline**, version 1.2.6
 © 2026 Basic Genomics AB. All rights reserved.
 
 This page lists the third-party software components distributed with, or invoked by, the
@@ -85,7 +85,7 @@ third-party material.
 
 ## 6. Scope
 
-This document was generated against the repository at version 1.2.5. It covers the
+This document was generated against the repository at version 1.2.6. It covers the
 Python libraries installed from `requirements.txt`, the external tools invoked from
 Snakemake `shell:` directives, the Python runtime, and the fonts shipped in
 `workflow/resources/`.

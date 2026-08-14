@@ -83,8 +83,8 @@ reference: 'Homo_sapiens'
 ```
 
 Configuration file with every option written out explicitly. This mirrors the configuration
-shipped with the pipeline, and every value is the pipeline default. Set `annotate_bam` and
-`include_imputed` to `True` if you want the annotated BAM:
+shipped with the pipeline, and every value is the pipeline default. Set `annotate_bam` to
+`False` if the annotated BAM is not needed:
 
 ```yaml
 name: 'TEST_RUN'
@@ -96,7 +96,7 @@ collapse_representative: canonical
 basecode_max_gap: 550
 basecode_correct: False
 basecode_keep_ambiguous_imputation: True
-basecode_no_context_resolve: False
+basecode_context_resolve: True
 basecode_end_resolve: True
 basecode_intron_resolve: True
 data_type: pacbio_ccs
@@ -106,9 +106,9 @@ transcript_quantification: unique_only
 gene_quantification: unique_splicing_consistent
 model_construction_strategy: default_pacbio
 polya_requirement: auto
-annotate_bam: False
+annotate_bam: True
 duplicate_mode: all
-include_imputed: False
+include_imputed: True
 assess_variant_support: True
 variant_support_mode: both
 ```
@@ -213,7 +213,7 @@ long reads do not. See [above](#basecode-options).
 |----------------------|-------------|
 | **basecode_max_gap** | **Optional.** Integer. Maximum unsequenced exonic gap, in base pairs, that will be imputed as a contiguous exon when no annotated intron matches it. Molecules with larger gaps are skipped. [**Default:** `550`]. |
 | **basecode_keep_ambiguous_imputation** | **Optional.** Boolean. If `True`, molecules whose gap imputation was not unique are kept rather than skipped. Molecules that impute to no exons at all are still dropped either way. [**Default:** `True`]. |
-| **basecode_no_context_resolve** | **Optional.** Boolean. Disables context-constrained imputation. By default, when a gap cannot be filled uniquely across the whole gene, the molecule's *sequenced* introns are used to narrow the candidates to compatible isoforms and the gap is resolved from those. Setting this to `True` reverts to gene-wide-only imputation. [**Default:** `False`]. |
+| **basecode_context_resolve** | **Optional.** Boolean. Context-constrained imputation. When a gap cannot be filled uniquely across the whole gene, the molecule's *sequenced* introns are used to narrow the candidates to compatible isoforms and the gap is resolved from those. Setting this to `False` reverts to gene-wide-only imputation, which leaves such gaps filled as a single maximal intron and recovers no internal exons. [**Default:** `True`]. |
 | **basecode_intron_resolve** | **Optional.** Boolean. When a molecule is consistent with several isoforms, resolve to the isoform(s) whose **intron chain** matches most exactly, ignoring terminal and UTR differences. This prevents an end-truncated molecule from being pulled to a near-duplicate isoform by a coincidental TSS or poly-A match when its splice chain uniquely identifies another isoform. [**Default:** `True`]. |
 | **basecode_end_resolve** | **Optional.** Boolean. For full-length molecules (`TC` > 0 and `FC` > 0) that still match several isoforms, keep only exact full-splice matches and drop the longer isoforms that the molecule is merely nested inside. Uses the validated molecule ends to break end-containment ambiguity. [**Default:** `True`]. |
 | **basecode_correct** | **Optional.** Boolean. Also run IsoQuant's exon corrector. BaseCode mode disables it by design, because BaseCode alignments do not need correcting. For comparison and experiments only. [**Default:** `False`]. |
@@ -237,9 +237,9 @@ found appropriate for BaseCode data.
 
 | Configuration option | Description |
 |----------------------|-------------|
-| **annotate_bam** | **Optional.** Boolean. If `True`, write `results/isoquant/{name}.annotated.sorted.bam`, a copy of the molecules carrying their IsoQuant assignment in custom tags. See [BAM file tags](isoquant-tags.md). [**Default:** `False`]. |
+| **annotate_bam** | **Optional.** Boolean. If `True`, write `results/isoquant/{name}.annotated.sorted.bam`, a copy of the molecules carrying their IsoQuant assignment in custom tags. See [BAM file tags](isoquant-tags.md). [**Default:** `True`]. |
 | **duplicate_mode** | **Optional.** String, one of `first`, `best`, `all`. How to record a molecule that is compatible with more than one isoform: `first` keeps the first row, `best` keeps the highest-priority assignment type (one isoform), `all` records every compatible isoform with the `ZI` and `ZE` tags `;`-joined and positionally aligned. [**Default:** `all`]. |
-| **include_imputed** | **Optional.** Boolean. If `True`, each molecule's CIGAR in the annotated BAM is rewritten to its imputed exon/intron structure, so the reconstructed structure is what a genome browser displays. The original CIGAR is preserved in the `OC` tag and `IM` marks whether it changed. [**Default:** `False`]. |
+| **include_imputed** | **Optional.** Boolean. If `True`, each molecule's CIGAR in the annotated BAM is rewritten to its imputed exon/intron structure, so the reconstructed structure is what a genome browser displays. The original CIGAR is preserved in the `OC` tag and `IM` marks whether it changed. [**Default:** `True`]. |
 
 ### Variant support
 

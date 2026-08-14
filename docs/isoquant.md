@@ -26,7 +26,7 @@ that step does.
 3. **Run IsoQuant.** Reads are assigned to isoforms, novel transcript models are constructed, and both reference and discovered transcripts and genes are quantified per sample, using the `SM` tag as the read group.
 4. **Build MuData.** All count and TPM matrices are collected into a single `.h5mu` file for downstream analysis in Python. See [Output](isoquant-output.md).
 5. **Assess Variant Support.** Per-variant read support is computed for discovered and/or reference transcripts.
-6. **Annotate BAM.** The molecules are written back out as a BAM carrying their IsoQuant assignment in custom tags, so assignments can be inspected in a genome browser. Off by default; turn it on with `annotate_bam: True`. See [BAM file tags](isoquant-tags.md).
+6. **Annotate BAM.** The molecules are written back out as a BAM carrying their IsoQuant assignment in custom tags, so assignments can be inspected in a genome browser. On by default; turn it off with `annotate_bam: False`. See [BAM file tags](isoquant-tags.md).
 
 </div>
 

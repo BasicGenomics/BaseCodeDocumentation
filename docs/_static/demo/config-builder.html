@@ -131,7 +131,7 @@
         ["BaseCode mode", [
           ["basecode_max_gap","int",550,"Largest unsequenced gap to impute, in bp.",false],
           ["basecode_keep_ambiguous_imputation","bool",true,"Keep molecules whose gap imputation was not unique.",false],
-          ["basecode_no_context_resolve","bool",false,"Disable context-constrained imputation.",false],
+          ["basecode_context_resolve","bool",true,"Resolve ambiguous gaps using the molecule's own sequenced introns.",false],
           ["basecode_intron_resolve","bool",true,"Resolve by intron chain, ignoring terminal differences.",false],
           ["basecode_end_resolve","bool",true,"Use validated ends to break containment ambiguity.",false],
           ["basecode_correct","bool",false,"Also run IsoQuant's exon corrector. Experiments only.",false],
@@ -146,9 +146,9 @@
           ["polya_requirement","str","auto","How strictly a poly-A tail is required.",false],
         ]],
         ["Annotated BAM", [
-          ["annotate_bam","bool",false,"Write a BAM carrying the IsoQuant assignment tags.",false],
+          ["annotate_bam","bool",true,"Write a BAM carrying the IsoQuant assignment tags.",false],
           ["duplicate_mode","enum:first,best,all","all","How to record multi-isoform molecules.",false],
-          ["include_imputed","bool",false,"Rewrite CIGARs to the imputed structure.",false],
+          ["include_imputed","bool",true,"Rewrite CIGARs to the imputed structure.",false],
         ]],
         ["Variant support", [
           ["assess_variant_support","bool",true,"Compute per-variant read support.",false],

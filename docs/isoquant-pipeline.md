@@ -28,7 +28,7 @@ docker run --rm --name TEST_RUN \
     --mount type=bind,src=$(pwd)/results/,dst=/usr/local/BaseCodeIsoQuant/results/ \
     --mount type=bind,src=$(pwd)/config_isoquant/,dst=/usr/local/BaseCodeIsoQuant/config/ \
     --mount type=bind,src=/path/to/BaseCode_resources/,dst=/usr/local/app/resources/ \
-    basicgenomics/basecode_isoquant:1.4.1 --verbose
+    basicgenomics/basecode_isoquant:1.4.2 --verbose
 sudo chown -R user:group results/
 ```
 

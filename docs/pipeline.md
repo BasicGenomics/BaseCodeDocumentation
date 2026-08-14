@@ -20,7 +20,7 @@ docker run --rm --name TEST_RUN \
     --mount type=bind,src=$(pwd)/config/,dst=/usr/local/BaseCode/config/ \
     --mount type=bind,src=/path/to/BaseCode_resources/,dst=/usr/local/app/resources/ \
     --mount type=bind,src=$(pwd)/fastq/,dst=/usr/local/BaseCode/fastq/ \
-    basicgenomics/basecode:1.2.5
+    basicgenomics/basecode:1.2.6
 sudo chown -R user:group results/
 ```
 
