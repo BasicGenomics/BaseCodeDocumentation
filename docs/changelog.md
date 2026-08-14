@@ -23,7 +23,7 @@ Rerunning the Processing Pipeline also means rerunning IsoQuant. Not the reverse
 
 ### 1.2.5
 
-Baseline for this changelog.
+Where this changelog starts. Earlier releases are not listed.
 
 ## BaseCode IsoQuant Pipeline
 
@@ -33,9 +33,7 @@ Baseline for this changelog.
   default; the old option still works.
 - `annotate_bam` and `include_imputed` now default to `True`.
 - `CV` tag dropped from the annotated BAM (~54 MB per million molecules).
-- Fixed base-quality handling when adapting the stitched BAM.
-- Pipeline and script versions logged to `results/isoquant/logs/{name}.versions.log`.
 
 ### 1.4.1
 
-Baseline for this changelog.
+Where this changelog starts. Earlier releases are not listed.
