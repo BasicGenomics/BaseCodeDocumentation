@@ -32,7 +32,7 @@ Where this changelog starts. Earlier releases are not listed.
 - `basecode_no_context_resolve` renamed to `basecode_context_resolve`, meaning inverted. Same
   default; the old option still works.
 - `annotate_bam` and `include_imputed` now default to `True`.
-- `CV` tag dropped from the annotated BAM (~54 MB per million molecules).
+- `CV` tag dropped from the annotated BAM.
 
 ### 1.4.1
 
