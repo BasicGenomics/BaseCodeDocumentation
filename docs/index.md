@@ -60,8 +60,6 @@ annotation.
 | BaseCode Processing Pipeline | [`basicgenomics/basecode`](https://hub.docker.com/r/basicgenomics/basecode) | [![](https://img.shields.io/docker/v/basicgenomics/basecode?sort=semver&label=%20&color=EB0079)](https://hub.docker.com/r/basicgenomics/basecode/tags) |
 | BaseCode IsoQuant Pipeline | [`basicgenomics/basecode_isoquant`](https://hub.docker.com/r/basicgenomics/basecode_isoquant) | [![](https://img.shields.io/docker/v/basicgenomics/basecode_isoquant?sort=semver&label=%20&color=EB0079)](https://hub.docker.com/r/basicgenomics/basecode_isoquant/tags) |
 
-<span class="release-name">BaseCode 1.4.0 · Kebnekaise</span>
-
 </div>
 
 ## Community <span class="badge-new">New</span>

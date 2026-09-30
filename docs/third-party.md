@@ -1,6 +1,6 @@
 # Third-party notices (BaseCode)
 
-**BaseCode Processing Pipeline**, version 1.4.0 ("Kebnekaise")
+**BaseCode Processing Pipeline**, version 1.4.0
 © 2026 Basic Genomics AB. All rights reserved.
 
 This page lists the third-party software components distributed with, or invoked by, the

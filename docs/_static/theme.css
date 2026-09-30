@@ -603,51 +603,7 @@ article.content:has(.hero) h1 {
   border: 1px solid var(--brand-rule);
   border-left: 3px solid var(--brand-accent);
   border-radius: 6px;
-  background: var(--table-head-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 150' width='640' height='150'%3E%3Ccircle cx='540' cy='38' r='15' fill='none' stroke='%23f2a1d3' stroke-width='1.5'/%3E%3Cpath d='M0 150 V104 L48 96 L96 102 L142 86 L190 95 L236 80 L282 92 L320 78 L360 70 L420 82 L470 72 L520 66 L566 78 L604 70 L640 76 V150 Z' fill='%23f5e8f2'/%3E%3Cpath d='M150 150 L232 110 L282 92 L318 64 L340 38 L354 22 L366 38 L380 48 L394 40 Q414 24 434 34 L458 50 L506 74 L570 94 L640 106 V150 Z' fill='%23f5dced'/%3E%3Cpath d='M150 150 L232 110 L282 92 L318 64 L340 38 L354 22 L366 38 L380 48 L394 40 Q414 24 434 34 L458 50 L506 74 L570 94 L640 106' fill='none' stroke='%23f294cd' stroke-width='1.4' stroke-linejoin='round'/%3E%3Cpath d='M394 40 Q414 24 434 34 L426 40 Q414 34 402 44 Z' fill='%23ffffff'/%3E%3Cpath d='M346 32 L354 22 L362 32 L356 30 Z' fill='%23ffffff'/%3E%3Cpath d='M0 150 V126 C60 116 112 130 172 122 C232 114 276 132 336 126 C396 120 440 134 500 126 C560 118 604 130 640 124 V150 Z' fill='%23f4cde6'/%3E%3C/svg%3E") no-repeat right bottom / auto 92%;
-}
-
-html.dark .statusbar {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 150' width='640' height='150'%3E%3Ccircle cx='540' cy='38' r='15' fill='none' stroke='%23781052' stroke-width='1.5'/%3E%3Cpath d='M0 150 V104 L48 96 L96 102 L142 86 L190 95 L236 80 L282 92 L320 78 L360 70 L420 82 L470 72 L520 66 L566 78 L604 70 L640 76 V150 Z' fill='%232f1a2e'/%3E%3Cpath d='M150 150 L232 110 L282 92 L318 64 L340 38 L354 22 L366 38 L380 48 L394 40 Q414 24 434 34 L458 50 L506 74 L570 94 L640 106 V150 Z' fill='%23401836'/%3E%3Cpath d='M150 150 L232 110 L282 92 L318 64 L340 38 L354 22 L366 38 L380 48 L394 40 Q414 24 434 34 L458 50 L506 74 L570 94 L640 106' fill='none' stroke='%23ad096c' stroke-width='1.4' stroke-linejoin='round'/%3E%3Cpath d='M394 40 Q414 24 434 34 L426 40 Q414 34 402 44 Z' fill='%23a88f9f'/%3E%3Cpath d='M346 32 L354 22 L362 32 L356 30 Z' fill='%23a88f9f'/%3E%3Cpath d='M0 150 V126 C60 116 112 130 172 122 C232 114 276 132 336 126 C396 120 440 134 500 126 C560 118 604 130 640 124 V150 Z' fill='%23551540'/%3E%3C/svg%3E");
-}
-
-.statusbar p {
-  margin: 0 0 0.3rem;
-}
-
-.release-name {
-  display: block;
-  text-align: right;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--lead-fg);
-}
-
-.rerun {
-  display: inline-block;
-  padding: 0.12em 0.7em;
-  border: 1px solid var(--brand-rule);
-  border-radius: 999px;
   background: var(--table-head-bg);
-  color: var(--lead-fg);
-  font-size: 0.78rem;
-  font-weight: 600;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
-.rerun-compare {
-  border-color: color-mix(in srgb, var(--brand-active-tint) 40%, transparent);
-  background: color-mix(in srgb, var(--brand-active-tint) 10%, transparent);
-  color: var(--brand-link);
-}
-
-.rerun-recommended {
-  border-color: var(--brand-accent);
-  background: var(--brand-accent);
-  color: #ffffff;
 }
 
 .statusbar table {
