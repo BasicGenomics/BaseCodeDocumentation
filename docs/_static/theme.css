@@ -53,6 +53,24 @@ html.dark {
   --card-bg: var(--bg-surface);
 }
 
+:root,
+.dark {
+  --myst-color-link: var(--brand-link);
+  --myst-color-link-hover: var(--bg-pink);
+  --myst-color-link-underline: color-mix(in srgb, var(--bg-pink) 45%, transparent);
+  --myst-color-active: var(--brand-nav);
+  --myst-color-active-bg: color-mix(in srgb, var(--brand-active-tint) 18%, transparent);
+  --myst-color-active-surface: color-mix(in srgb, var(--brand-active-tint) 7%, transparent);
+  --myst-color-primary: var(--bg-pink);
+  --myst-color-primary-hover: var(--bg-pink-strong);
+  --myst-color-focus-ring: var(--brand-active-tint);
+  --myst-color-focus-outline: color-mix(in srgb, var(--brand-active-tint) 40%, transparent);
+  --myst-color-accent-text: var(--brand-nav);
+  --myst-color-accent-surface: color-mix(in srgb, var(--brand-active-tint) 7%, transparent);
+  --myst-color-accent-surface-border: color-mix(in srgb, var(--brand-active-tint) 35%, transparent);
+  --myst-color-accent-surface-text: var(--note-fg);
+}
+
 .outline-blue-200 {
   outline-color: var(--brand-active-tint) !important;
 }
