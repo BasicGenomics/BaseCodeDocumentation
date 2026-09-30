@@ -83,19 +83,12 @@
   const stage = document.getElementById("stage");
   const COLS = ["var(--pink)", "var(--purple)", "var(--amber)"];
 
-  // Three molecules of the same transcript, each carrying its own pattern of
-  // mismatches left behind by reverse transcription.
-  // The positions are chosen so that every pair of overlapping reads shares
-  // marks inside the overlap: that shared pattern is the evidence linking
-  // them to the same molecule.
   const PATTERNS = [
     [12, 32, 42, 62, 72, 90],
     [ 6, 36, 40, 66, 70, 85],
     [20, 30, 44, 60, 74, 95]
   ];
 
-  // Reads sampled from those molecules, deliberately shuffled. The spans
-  // overlap at 30-45 and 60-75, which is where the shared marks sit.
   const READS = [
     {m:0, s: 0, e:45}, {m:2, s:30, e:75}, {m:1, s:60, e:100},
     {m:2, s: 0, e:45}, {m:0, s:60, e:100}, {m:1, s: 0, e:45},
@@ -121,15 +114,12 @@
     stage.innerHTML = "";
     stage.classList.toggle("clickable", step === 2);
 
-    // transcript reference line
     stage.appendChild(el("rect", {x: X0, y: 26, width: X1 - X0, height: 8,
       rx: 4, fill: "var(--surface)", stroke: "var(--rule)"}));
     const lab = el("text", {x: X0, y: 18, "font-size": 11, fill: "var(--muted)"});
     lab.textContent = "one transcript";
     stage.appendChild(lab);
 
-    // once a molecule is identified, join its shared marks so the matching
-    // pattern is visible across the reads that overlap
     if (step === 2) {
       [...revealed].forEach(m => {
         PATTERNS[m].forEach(p => {
@@ -149,8 +139,6 @@
       const stitched = step >= 3;
       const y = stitched ? groupY(r) : scatterY(i);
       g.setAttribute("transform", `translate(0 ${y})`);
-      // once stitched, the short reads recede so the full-length read reads as
-      // the result rather than as one more bar among them
       g.setAttribute("opacity", stitched ? .28 : 1);
 
       const known = step >= 2 && revealed.has(r.m);
@@ -159,7 +147,6 @@
       g.appendChild(el("rect", {class: "body", x: px(r.s), y: 0,
         width: px(r.e) - px(r.s), height: 11, rx: 5.5, fill: colour, opacity: .9}));
 
-      // the mismatch pattern carried by this read
       if (step >= 1) {
         PATTERNS[r.m].forEach(p => {
           if (p < r.s || p > r.e) return;
@@ -172,7 +159,6 @@
       stage.appendChild(g);
     });
 
-    // the reconstructed synthetic long reads
     if (step >= 3) {
       [0, 1, 2].forEach(m => {
         const y = TOP + m * (LANE_H * 3) + 3 * 8 + 6;

@@ -17,7 +17,7 @@ of `tag:SM`.
 │        ├─ logs/
 │        ├─ mudata/
 │        │  ├─ {name}_counts.h5mu
-│        ├─ {name}.adapted_molecules.tsv
+│        ├─ {name}.adapted_molecules.tsv.gz
 │        ├─ {name}.annotated.sorted.bam
 │        ├─ {name}.annotated.sorted.bam.bai
 └─       └─ geneannotations_collapsed_{mode}_{representative}.db
@@ -28,7 +28,7 @@ of `tag:SM`.
 | {name}/ | Folder with all IsoQuant results: assignments, transcript models and quantification. Detailed below. |
 | logs/ | Folder with logs for each step of the BaseCode IsoQuant Pipeline, including `{name}.versions.log` recording the resolved run configuration and component versions. |
 | mudata/{name}_counts.h5mu | All quantification in a single MuData file for analysis in Python. It holds four modalities: `isoform` and `gene` for the discovered features, and `reference_isoform` and `reference_gene` for the reference annotation. Each is a samples × features matrix carrying both a `count` and a `tpm` layer, with the samples taken from the `read_group` tag. |
-| {name}.adapted_molecules.tsv | One row per molecule recording what molecule preparation changed: whether it had an unsequenced gap, the total gap length, whether a synthetic poly-A tail was added, whether it is full-length, and a summary in the `AD` column. |
+| {name}.adapted_molecules.tsv.gz | One row per molecule recording what molecule preparation changed: whether it had an unsequenced gap, the total gap length, whether a synthetic poly-A tail was added, whether it is full-length, and a summary in the `AD` column. |
 | {name}.annotated.sorted.bam | The molecules carrying their IsoQuant assignment in custom tags. Written only when `annotate_bam` is `True`. See [BAM file tags](isoquant-tags.md). |
 | {name}.annotated.sorted.bam.bai | BAM index file. |
 | geneannotations_collapsed_{mode}_{representative}.db | The gene database IsoQuant built from the annotation actually used. Named after the collapsed annotation (e.g. `geneannotations_collapsed_cds_canonical.db`), or after the reference annotation when `collapse_annotation` is `False`. |

@@ -6,7 +6,7 @@ To start the BaseCode Processing Pipeline, a configuration file must be specifie
 - Path to the BaseCode resources directory, containing the genome reference and annotations (the folder `genome_references/` must be present).
 - Path to the FASTQ files obtained from a sequencer compatible with RNA BaseCode.
 
-The pipeline is then started using `docker run`. After it has finished, the ownership of the results folder should be changed to the current user using `chown`. A guided start-up script is available from the [**BaseCodeHelper**](https://github.com/BasicGenomics/BaseCodeHelper) tool.
+The pipeline is then started using `docker run`. After it has finished, the ownership of the results folder should be changed to the current user using `chown`.
 
 The [configuration builder](config-builder.md) writes this command for you, with the mount
 paths filled in.
@@ -20,7 +20,7 @@ docker run --rm --name TEST_RUN \
     --mount type=bind,src=$(pwd)/config/,dst=/usr/local/BaseCode/config/ \
     --mount type=bind,src=/path/to/BaseCode_resources/,dst=/usr/local/app/resources/ \
     --mount type=bind,src=$(pwd)/fastq/,dst=/usr/local/BaseCode/fastq/ \
-    basicgenomics/basecode:1.2.6
+    basicgenomics/basecode:1.4.0
 sudo chown -R user:group results/
 ```
 

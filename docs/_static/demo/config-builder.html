@@ -80,12 +80,10 @@
 
 <script>
 (function () {
-  // Schema for each pipeline. Defaults mirror the values the pipelines fall
-  // back to when a key is omitted, so "only changed" output stays truthful.
   const SCHEMA = {
     basecode: {
       label: "BaseCode Processing Pipeline",
-      dir: "BaseCode", cfgdir: "config", image: "basicgenomics/basecode:1.2.5",
+      dir: "BaseCode", cfgdir: "config", image: "basicgenomics/basecode:1.4.0",
       mounts: [["results","/usr/local/BaseCode/results/"],
                ["config","/usr/local/BaseCode/config/"],
                ["RESOURCES","/usr/local/app/resources/"],
@@ -110,7 +108,7 @@
     },
     isoquant: {
       label: "BaseCode IsoQuant Pipeline",
-      dir: "BaseCode", cfgdir: "config_isoquant", image: "basicgenomics/basecode_isoquant:1.4.1",
+      dir: "BaseCode", cfgdir: "config_isoquant", image: "basicgenomics/basecode_isoquant:1.4.3",
       mounts: [["results","/usr/local/BaseCodeIsoQuant/results/"],
                ["config_isoquant","/usr/local/BaseCodeIsoQuant/config/"],
                ["RESOURCES","/usr/local/app/resources/"]],
@@ -228,7 +226,7 @@
     const lines = [];
     s.groups.forEach(([, opts]) => opts.forEach(([nm, , , , req]) => {
       const v = state[current][nm];
-      if (v === "" && !req) return;                   // omit empty optional paths
+      if (v === "" && !req) return;
       lines.push(nm + ": " + yamlValue(v));
     }));
     $("cfgname").textContent = s.cfgdir + "/config.yaml";
@@ -247,7 +245,7 @@
     $("note").textContent =
       "name is currently '" + state[current].name + "'. Both pipelines must use the same name, " +
       "otherwise the IsoQuant pipeline cannot find the BAM the processing pipeline produced.";
-    state[other].name = state[current].name;           // keep the two in step
+    state[other].name = state[current].name;
   }
 
   function render() { renderForm(); renderOutput(); }

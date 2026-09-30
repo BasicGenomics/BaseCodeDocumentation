@@ -1,6 +1,6 @@
 # Third-party notices (IsoQuant)
 
-**BaseCode IsoQuant Pipeline**, version 1.4.2 ("Midsommar")  
+**BaseCode IsoQuant Pipeline**, version 1.4.3 ("Midsommar")  
 IsoQuant engine build `3.13.0.bg`  
 © 2026 Basic Genomics AB. All rights reserved.
 
@@ -62,7 +62,7 @@ Invoked as separate processes from Snakemake `shell:` directives.
 
 | Component | Licence | Copyright holder | Invoked in | Licence file |
 | --- | --- | --- | --- | --- |
-| [SAMtools](https://github.com/samtools/samtools) | MIT/Expat | Genome Research Ltd.; contributors | `run_isoquant.smk`: BAM index and sort (3 call sites) | [samtools.txt](licence-texts-isoquant.md#lic-iq-samtools) |
+| [SAMtools](https://github.com/samtools/samtools) | MIT/Expat | Genome Research Ltd.; contributors | `run_isoquant.smk`: BAM index (1 call site) | [samtools.txt](licence-texts-isoquant.md#lic-iq-samtools) |
 
 ## 5. Language runtime
 
@@ -99,7 +99,7 @@ GPL-2.0 work they are covered by §1, not by this section.
 
 ## 8. Scope
 
-This document was generated against the pipeline repository at version 1.4.2 with the
+This document was generated against the pipeline repository at version 1.4.3 with the
 IsoQuant submodule pinned at `3.13.0.bg`. Version columns give the requirement declared in
 the repository, which is what the container build resolves; where a requirement is a
 lower bound (`>=`) the installed version may be newer.

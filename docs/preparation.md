@@ -17,6 +17,10 @@ Recommended Specifications:
     - Secondary drive (*Optional*): 4 TB SSD or HDD (RAID 1 optional for redundancy)
 - Operating System: Linux (e.g. Ubuntu 22.04 LTS or compatible distribution)
 
+Memory and cores decide how many samples are reconstructed at the same time: about three on
+the minimum specification and six on the recommended one. More of both lets more samples run
+in parallel. See [Samples in parallel](input.md#input-parallel-slots) for how to set this.
+
 ## Docker
 The BaseCode Processing Pipeline is distributed as a Docker image. To install Docker, please follow the instructions found at https://www.docker.com/.
 

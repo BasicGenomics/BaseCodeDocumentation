@@ -6,8 +6,8 @@ assignment in custom tags. This makes it possible to inspect assignments directl
 browser, using the same colour/group/sort-by-tag workflow described in
 [Working with BAM tags](vignette-bam-tags.md).
 
-All tags written by the BaseCode Processing Pipeline are preserved, so `SM`, `XT`, `NR`,
-`ER`, `IR`, `FC`, `IC` and `TC` remain available. See
+All tags written by the BaseCode Processing Pipeline are preserved except `CV`, so `SM`, `XT`,
+`NR`, `ER`, `IR`, `FC`, `IC` and `TC` remain available. See
 [BAM file tags](functions.md) for those. The tags below are added by this pipeline.
 
 ## Molecule preparation
