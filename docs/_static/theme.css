@@ -199,6 +199,28 @@ nav a.active {
   color: var(--brand-nav);
 }
 
+.myst-banner {
+  background-color: color-mix(in srgb, var(--brand-active-tint) 9%, var(--card-bg)) !important;
+  border-bottom-color: color-mix(in srgb, var(--brand-accent) 40%, transparent) !important;
+}
+
+.myst-banner .text-blue-900,
+html.dark .myst-banner .dark\:text-blue-50 {
+  color: var(--note-fg) !important;
+}
+
+.myst-banner a {
+  color: var(--brand-link) !important;
+}
+
+.myst-banner button:hover {
+  background-color: color-mix(in srgb, var(--brand-active-tint) 15%, transparent) !important;
+}
+
+.myst-banner button:focus-visible {
+  --tw-ring-color: var(--brand-active-tint) !important;
+}
+
 .myst-admonition {
   border-left-color: var(--note-rule) !important;
 }

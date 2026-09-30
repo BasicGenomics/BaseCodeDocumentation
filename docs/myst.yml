@@ -58,5 +58,6 @@ site:
     hide_footer_links: true
     style: _static/theme.css
   parts:
+    banner: banner.md
     footer: footer.md
     

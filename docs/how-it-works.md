@@ -12,5 +12,4 @@ Work through it below.
         loading="lazy"
         class="demo-frame"></iframe>
 
-This is what the [BaseCode Processing Pipeline](overview.md) does at the **Reconstruct
-Molecules** and **Stitch Molecules** steps, on millions of molecules at once.
+This is what the [BaseCode Processing Pipeline](overview.md) does, on millions of reads at once.
