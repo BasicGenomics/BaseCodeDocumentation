@@ -17,6 +17,7 @@
 
   --brand-active: var(--brand-link);
   --brand-active-tint: var(--bg-pink-logo);
+  --brand-nav: var(--bg-pink);
 
   --note-rule: #9ca3af;
   --note-bg: #f3f4f6;
@@ -37,6 +38,7 @@ html.dark {
   --brand-rule: var(--bg-border);
   --brand-active: var(--bg-pink-light);
   --brand-active-tint: var(--bg-pink-light);
+  --brand-nav: var(--bg-pink-light);
 
   --note-rule: #4b5563;
   --note-bg: #23272f;
@@ -184,15 +186,17 @@ article.content h1 {
   box-shadow: inset 3px 0 0 var(--brand-active-tint);
 }
 
+.myst-toc .text-blue-800,
+html.dark .myst-toc .dark\:text-blue-200,
 .myst-toc-item-exact a,
 a.myst-toc-item-exact,
 nav a.active {
-  color: var(--brand-active) !important;
+  color: var(--brand-nav) !important;
   font-weight: 600;
 }
 
 .myst-toc-item:hover {
-  color: var(--brand-active);
+  color: var(--brand-nav);
 }
 
 .myst-admonition {
@@ -479,6 +483,10 @@ article.content:has(.hero) h1 {
 .hotspots ol > li:nth-child(5) { left: 24.4%; top: 54.6%; }
 .hotspots ol > li:nth-child(6) { left: 24.4%; top: 65.8%; }
 .hotspots ol > li:nth-child(7) { left: 24.4%; top: 77.1%; }
+
+.hotspots.hotspots-plain {
+  max-width: 380px;
+}
 
 .hotspots-plain ol > li {
   width: 46px;

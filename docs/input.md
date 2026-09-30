@@ -44,7 +44,14 @@ cat L01/*_read_1.fq.gz L02/*_read_1.fq.gz > L01_L02_read_1.fq.gz
 cat L01/*_read_2.fq.gz L02/*_read_2.fq.gz > L01_L02_read_2.fq.gz
 ```
 #### Illumina sequencers
-Illumina sequencing platforms generate four FASTQ files, paired-end read files, `_R1.fastq.gz` and `_R2.fastq.gz`, and separate index read files, `_I1.fastq.gz` and `_I2.fastq.gz`, containing the indexing sequences. Illumina sequencing data are typically demultiplexed post-run. The resulting files can be given to the pipeline as a list or a glob pattern for each of `r1`, `r2`, `i1` and `i2`, as for MGI above, or concatenated beforehand:
+Illumina sequencing platforms generate four FASTQ files, paired-end read files, `_R1.fastq.gz` and `_R2.fastq.gz`, and separate index read files, `_I1.fastq.gz` and `_I2.fastq.gz`, containing the indexing sequences. Illumina sequencing data are typically demultiplexed post-run. The resulting files, for example one per lane, can be given together in the [configuration file](#input-config), as a list or a glob pattern for each of `r1`, `r2`, `i1` and `i2`:
+```
+r1: 'fastq/*_R1*.fastq.gz'
+r2: 'fastq/*_R2*.fastq.gz'
+i1: 'fastq/*_I1*.fastq.gz'
+i2: 'fastq/*_I2*.fastq.gz'
+```
+Concatenating the files beforehand gives the same result:
 ```
 cat *_R1.fq.gz > R1.fq.gz
 cat *_R2.fq.gz > R2.fq.gz
