@@ -38,9 +38,9 @@ both pipelines.
 
 ### Which image tag should I use?
 
-Always a specific version, never `latest`. The `latest` tag does not necessarily point at the
-newest release and it moves without warning. Current versions are listed on
-[Container images](containers.md).
+The newest release. `basicgenomics/basecode:latest` points at it. For a study, pull a specific
+version such as `1.4.0`, so every sample runs on the same version. Current versions are listed
+on [Container images](containers.md).
 
 ## Reference data
 

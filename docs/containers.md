@@ -16,10 +16,9 @@ Docker Hub: [hub.docker.com/u/basicgenomics](https://hub.docker.com/u/basicgenom
 
 Other tags visible on Docker Hub are development builds and are not intended for use.
 
-:::{note} Do not use `latest`
-The `latest` tag does not necessarily point at the newest release, and it moves without
-warning. Always pull a specific version tag.
-:::
+`basicgenomics/basecode:latest` points at the newest release of the BaseCode Processing
+Pipeline. To keep a study on one version, pull its version tag instead, for example
+`basicgenomics/basecode:1.4.0`.
 
 Running the BaseCode Processing Pipeline container is covered in
 [Starting the Pipeline](pipeline.md).

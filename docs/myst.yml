@@ -60,4 +60,5 @@ site:
   parts:
     banner: banner.md
     footer: footer.md
+    primary_sidebar_footer: sidebar-footer.md
     

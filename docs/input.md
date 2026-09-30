@@ -281,29 +281,42 @@ cp /path/to/config.yaml config/
 (input-parallel-slots)=
 #### Samples in parallel
 
-Reconstruction and stitching run one sample at a time per slot, and `parallel_slots` sets how
-many slots there are. The run's threads are divided evenly between the slots. The pipeline
-uses 30 threads unless `--threads` is added after the image name in the `docker run` command
-(see [Starting the Pipeline](pipeline.md)), for example `basicgenomics/basecode:1.4.0 --threads 24`.
+Reconstruction and stitching work on one sample per slot, and `parallel_slots` sets how many
+slots there are. Each slot needs its own memory. In 1.4.0 runs, a sample peaked at 10 to 20 GB
+during reconstruction, and deeply sequenced samples at up to 25 GB during stitching. Allowing
+about 20 GB per slot gives:
 
-Each slot also needs its own memory. In 1.4.0 runs, a sample peaked at 10 to 20 GB during
-reconstruction, and deeply sequenced samples at up to 25 GB during stitching. As a guide,
-allow about 20 GB of memory and at least 3 threads per slot:
+| Memory | `parallel_slots` |
+| --- | --- |
+| 64 GB | up to 3 |
+| 128 GB | up to 6 |
+| 256 GB | up to 10 (the default) |
 
-| Machine | `--threads` | `parallel_slots` |
-| --- | --- | --- |
-| Minimum specification (12 cores, 64 GB) | 12 | 3 |
-| Recommended specification (24 cores, 128 GB) | 24 | 6 |
-| 32 cores, 256 GB | 32 | 10 |
+Fewer slots always works. With `parallel_slots: 1` the samples are reconstructed one after
+another, which needs the least memory and takes the longest. The default of 10 slots needs
+about 200 GB, so lower it on smaller machines.
 
-The default of 10 slots needs about 200 GB of memory, so lower it on smaller machines. More
-slots than samples has no effect.
+The run's threads are divided evenly between the slots, and each slot should get at least 3.
+The pipeline uses 30 threads unless `--threads` is added after the image name in the
+`docker run` command (see [Starting the Pipeline](pipeline.md)). A thread here is a logical
+CPU, and most processors run two per physical core. The recommended 24 cores therefore give
+48 threads, so the default of 30 fits. On the 12-core minimum, use
+`basicgenomics/basecode:1.4.0 --threads 24`.
 
 (input-tool-options)=
 #### Tool options
 
 The defaults for every tool the pipeline runs are kept in `workflow/resources/params.yaml`
-inside the image. To change one, name the pipeline step and the option under `params:`:
+inside the image. They are tuned for BaseCode data, and most runs need no changes.
+
+The one worth considering is `max-concurrent-reads` in the reconstruct step: how many reads
+each slot keeps in reconstruction at once (default 5,000,000). A gene with more reads than
+that is reconstructed on its own, with nothing else alongside it, which can slow down deeply
+sequenced samples. If the machine has memory to spare, raising the limit lets such genes run
+alongside the others. The results are the same either way; only speed and memory change, so
+allow for the extra memory per slot when choosing `parallel_slots`.
+
+To change an option, name the pipeline step and the option under `params:`:
 
 ```
 params:
