@@ -809,20 +809,9 @@ html.dark .footer a {
   color: #ddd;
 }
 
-.footer.myst-primary-sidebar-footer {
-  margin-top: 0;
-  padding: 0.75rem 0;
-  border-top: 0;
-  background-color: transparent;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--lead-fg);
-}
-
-html.dark .footer.myst-primary-sidebar-footer {
-  border-top: 0;
-  background-color: transparent;
-  color: var(--bg-muted);
+.myst-primary-sidebar-footer,
+.myst-made-with-myst {
+  display: none !important;
 }
 
 /* === GENERATED: Mona Sans @font-face, do not edit by hand === */

@@ -14,8 +14,6 @@ Docker Hub: [hub.docker.com/u/basicgenomics](https://hub.docker.com/u/basicgenom
 | BaseCode IsoQuant Pipeline | [`basicgenomics/basecode_isoquant`](https://hub.docker.com/r/basicgenomics/basecode_isoquant) | [![](https://img.shields.io/docker/v/basicgenomics/basecode_isoquant?sort=semver&label=%20&color=EB0079)](https://hub.docker.com/r/basicgenomics/basecode_isoquant/tags) | 0.66 GiB |
 :::
 
-Other tags visible on Docker Hub are development builds and are not intended for use.
-
 `basicgenomics/basecode:latest` points at the newest release of the BaseCode Processing
 Pipeline. To keep a study on one version, pull its version tag instead, for example
 `basicgenomics/basecode:1.4.0`.

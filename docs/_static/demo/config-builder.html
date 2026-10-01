@@ -103,6 +103,7 @@
         ["Options", [
           ["gff_gene_identifier","str","gene_id","Gene identifier in column 9 of the GFF3.",false],
           ["mode","enum:basic,comprehensive","basic","How much quality control detail to keep.",false],
+          ["parallel_slots","int",10,"Samples reconstructed at the same time. Allow about 20 GB of memory per slot.",false],
         ]],
       ],
     },

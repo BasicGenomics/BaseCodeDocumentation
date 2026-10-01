@@ -1,7 +1,10 @@
 # Output
 
-A folder named `results/` contains the output from the pipeline. The tree below outlines the
-relevant files and folders that can be expected after a successful run.
+A folder named `results/` contains the output from the pipeline. The main result is
+`{name}.stitched.molecules.sorted.bam`: the BaseCode Synthetic Long Reads, one record per
+reconstructed molecule, and the input to the [BaseCode IsoQuant Pipeline](isoquant.md). Gene
+counts per sample are in `QC_files/counts/`, and `{name}_run_report.pdf` summarises the run.
+The tree below outlines the files and folders that can be expected after a successful run.
 
 Throughout, `{name}` is the `name` set in the configuration file and `{sample}` is a `SAMPLE_ID`
 from the sample sheet.
@@ -16,6 +19,12 @@ from the sample sheet.
 │     ├─ logs/
 │     ├─ metadata/
 │     ├─ QC_files/
+│     │  ├─ conversion_rates/
+│     │  ├─ counts/
+│     │  ├─ fastq/
+│     │  ├─ gene_reconstruction_status/
+│     │  ├─ {name}_long_form_reconstruction_stats.csv.gz
+│     │  └─ {name}_summary_stats.csv
 │     ├─ read_flow_files/
 │     ├─ summaries/
 │     ├─ {name}_run_report.pdf
@@ -25,17 +34,17 @@ from the sample sheet.
 
 | File/Folder | Description |
 |----------------------|-------------|
-| benchmarks/ | Run time and memory use of each step. |
+| benchmarks/ | Run time, memory and CPU use of each step. |
 | checksums/ | `{name}_checksums.md5`: MD5 checksums of the stitched BAM, its index and the long-form reconstruction stats, for checking copies. |
 | dones/ | Markers the pipeline uses to track finished steps. Not needed for analysis. |
 | intermediate/ | The aligned reads before and after reconstruction, and per-sample reconstruction and stitching records. Detailed below. |
-| logs/ | Logs for each step. `logs/tool_options/` records the options each tool ran with, see [Tool options](input.md#input-tool-options). |
+| logs/ | Logs for each step. `run_manifest.json` records the pipeline version, configuration and tool versions of the run, `run_history.jsonl` has one line per start or restart, and `tool_options/` records the options each tool ran with, see [Tool options](input.md#input-tool-options). |
 | metadata/ | Sample information derived from the sample sheet: sample barcodes, sample map and read type map. |
-| QC_files/ | Quality control tables and gene counts. Detailed below. |
-| read_flow_files/ | Read counts at each stage of the pipeline. |
+| QC_files/ | Quality control tables, the per-molecule reconstruction stats and the gene counts in `counts/`. Detailed below. |
+| read_flow_files/ | Read counts per sample barcode at the stages the pipeline tracks. `comprehensive` mode adds more stages. |
 | summaries/ | Summaries written by Cutadapt (trimming), HISAT-3N (mapping) and featureCounts (gene assignment). |
-| {name}_run_report.pdf | PDF report summarising the run. |
-| {name}.stitched.molecules.sorted.bam | The BaseCode Synthetic Long Reads, one record per molecule. See [BAM file tags](functions.md). |
+| {name}_run_report.pdf | PDF report of the run: the samples, read counts, detected genes, reconstruction, end-to-end molecules and their lengths, and transcript coverage. |
+| {name}.stitched.molecules.sorted.bam | The BaseCode Synthetic Long Reads: one record per molecule, mapped to the reference genome and sorted by position. Its tags are described in [BAM file tags](functions.md). |
 | {name}.stitched.molecules.sorted.bam.bai | BAM index file. |
 
 ## QC files
