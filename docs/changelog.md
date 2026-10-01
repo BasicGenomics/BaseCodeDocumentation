@@ -7,9 +7,9 @@ Newest first. Each release says what to do with data processed with an earlier v
 
 | Label | Meaning |
 | --- | --- |
-| **No rerun needed** | Results are unchanged. Use the new version for new runs. |
-| **Rerun for comparability** | Results shift slightly. Keep one study on one version. |
-| **Rerun recommended** | Analysis logic changed. Rerun affected samples. |
+| <span class="rerun rerun-none"><span class="rerun-status">No rerun needed</span></span> | Results are unchanged. Use the new version for new runs. |
+| <span class="rerun rerun-compare"><span class="rerun-status">Rerun for comparability</span></span> | Results shift slightly. Keep one study on one version. |
+| <span class="rerun rerun-recommended"><span class="rerun-status">Rerun recommended</span></span> | Analysis logic changed. Rerun affected samples. |
 
 :::
 
@@ -19,7 +19,7 @@ Rerunning the Processing Pipeline also means rerunning IsoQuant. Not the reverse
 
 ### 1.4.0
 
-**Data processed with an earlier version:** rerun for comparability.
+<span class="rerun rerun-recommended"><span class="rerun-label">Data from earlier versions</span><span class="rerun-status">Rerun recommended</span></span>
 
 - Overlapping genes that share reads, such as the mitochondrial genes, are reconstructed gene
   by gene instead of as one pooled group. Faster on deep samples; molecules in those genes
@@ -35,7 +35,7 @@ Rerunning the Processing Pipeline also means rerunning IsoQuant. Not the reverse
 
 ### 1.3.2
 
-**Data processed with an earlier version:** no rerun needed.
+<span class="rerun rerun-none"><span class="rerun-label">Data from earlier versions</span><span class="rerun-status">No rerun needed</span></span>
 
 - Reconstruction now enforces its memory budget (`max-concurrent-reads`, 5 M reads by
   default), and the prescan peaks about 40% lower.
@@ -50,7 +50,7 @@ Where this changelog starts. Earlier releases are not listed.
 
 ### 1.4.3
 
-**Data processed with an earlier version:** no rerun needed.
+<span class="rerun rerun-none"><span class="rerun-label">Data from earlier versions</span><span class="rerun-status">No rerun needed</span></span>
 
 - Lower peak memory: the annotated BAM and variant support are now built one chromosome at a
   time.
@@ -58,7 +58,7 @@ Where this changelog starts. Earlier releases are not listed.
 
 ### 1.4.2
 
-**Data processed with an earlier version:** no rerun needed.
+<span class="rerun rerun-none"><span class="rerun-label">Data from earlier versions</span><span class="rerun-status">No rerun needed</span></span>
 
 - `basecode_no_context_resolve` renamed to `basecode_context_resolve`, meaning inverted. Same
   default; the old option still works.

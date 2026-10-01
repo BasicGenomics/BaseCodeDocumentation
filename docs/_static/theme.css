@@ -809,8 +809,57 @@ html.dark .footer a {
   color: #ddd;
 }
 
+.rerun {
+  --rerun-border: var(--brand-rule);
+  --rerun-bg: var(--card-bg);
+  --rerun-fg: var(--note-fg);
+  display: inline-flex;
+  flex-wrap: wrap;
+  vertical-align: middle;
+  overflow: hidden;
+  border: 1px solid var(--rerun-border);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.rerun > span {
+  padding: 0.2em 0.75em;
+}
+
+.rerun-label {
+  background: var(--note-bg);
+  color: var(--note-fg);
+  font-weight: 500;
+}
+
+.rerun-status {
+  background: var(--rerun-bg);
+  color: var(--rerun-fg);
+}
+
+.rerun-compare {
+  --rerun-border: color-mix(in srgb, var(--brand-active-tint) 40%, transparent);
+  --rerun-bg: color-mix(in srgb, var(--brand-active-tint) 14%, var(--card-bg));
+  --rerun-fg: var(--brand-link);
+}
+
+.rerun-recommended {
+  --rerun-border: color-mix(in srgb, var(--bg-pink) 90%, #000000);
+  --rerun-bg: color-mix(in srgb, var(--bg-pink) 90%, #000000);
+  --rerun-fg: #ffffff;
+}
+
+html.dark .rerun-recommended {
+  --rerun-border: var(--bg-pink-light);
+  --rerun-bg: var(--bg-pink-light);
+  --rerun-fg: var(--bg-black);
+}
+
 .myst-primary-sidebar-footer,
-.myst-made-with-myst {
+.myst-made-with-myst,
+.myst-fm-downloads-dropdown {
   display: none !important;
 }
 
