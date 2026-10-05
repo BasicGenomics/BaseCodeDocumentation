@@ -16,7 +16,7 @@ Docker Hub: [hub.docker.com/u/basicgenomics](https://hub.docker.com/u/basicgenom
 
 `basicgenomics/basecode:latest` points at the newest release of the BaseCode Processing
 Pipeline. To keep a study on one version, pull its version tag instead, for example
-`basicgenomics/basecode:1.4.0`.
+`basicgenomics/basecode:1.4.1`.
 
 Running the BaseCode Processing Pipeline container is covered in
 [Starting the Pipeline](pipeline.md).

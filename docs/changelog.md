@@ -9,13 +9,21 @@ Newest first. Each release says what to do with data processed with an earlier v
 | --- | --- |
 | <span class="rerun rerun-none"><span class="rerun-status">No rerun needed</span></span> | Results are unchanged. Use the new version for new runs. |
 | <span class="rerun rerun-compare"><span class="rerun-status">Rerun for comparability</span></span> | Results shift slightly. Keep one study on one version. |
-| <span class="rerun rerun-recommended"><span class="rerun-status">Rerun recommended</span></span> | Analysis logic changed. Rerun affected samples. |
+| <span class="rerun rerun-recommended"><span class="rerun-status">Rerun recommended</span></span> | Results changed or were incomplete. Rerun affected samples. |
 
 :::
 
 Rerunning the Processing Pipeline also means rerunning IsoQuant. Not the reverse.
 
 ## BaseCode Processing Pipeline
+
+### 1.4.1
+
+<span class="rerun rerun-none"><span class="rerun-label">Basic-mode data</span><span class="rerun-status">No rerun needed</span></span> <span class="rerun rerun-recommended"><span class="rerun-label">Comprehensive-mode data</span><span class="rerun-status">Rerun recommended</span></span>
+
+- Fixed: in `comprehensive` mode, 1.4.0 did not write the coverage tables
+  (`QC_files/gene_body_coverage/`, `QC_files/molecule_coverage/`), because the Polars version it
+  shipped failed on them. 1.4.1 writes them, and computes them faster.
 
 ### 1.4.0
 

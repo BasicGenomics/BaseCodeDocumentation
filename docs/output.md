@@ -144,4 +144,3 @@ With `mode: comprehensive`, the run also writes:
 | QC_files/insert_overlap_sizes/ | Insert, mate overlap and aligned sizes, and TSO capture. |
 | QC_files/mapping_quality/ | Mapping quality, overall and per read type. |
 | QC_files/molecule_coverage/ | Coverage per molecule. |
-| QC_files/molecule_discordance/ | Per-molecule consistency of the conversion pattern across its reads. |

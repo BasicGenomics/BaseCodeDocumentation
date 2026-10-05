@@ -1,6 +1,6 @@
 # Third-party notices (BaseCode)
 
-**BaseCode Processing Pipeline**, version 1.4.0
+**BaseCode Processing Pipeline**, version 1.4.1
 © 2026 Basic Genomics AB. All rights reserved.
 
 This page lists the third-party software components distributed with, or invoked by, the
@@ -25,7 +25,7 @@ installed into the pipeline container.
 | [cutadapt](https://github.com/marcelm/cutadapt) | 4.6 | MIT | Marcel Martin and contributors | adapter/quality trimming rules in `processing.smk` | [cutadapt.txt](licence-texts.md#lic-cutadapt) |
 | [PyYAML](https://github.com/yaml/pyyaml) | 6.0.2 | MIT | Ingy döt Net; Kirill Simonov | config and stats YAML I/O across 11 scripts | [pyyaml.txt](licence-texts.md#lic-pyyaml) |
 | [pandas](https://github.com/pandas-dev/pandas) | 2.3.0 | BSD-3-Clause | AQR Capital Management, LLC; Lambda Foundry, Inc.; PyData Development Team; open source contributors | tabular QC and stats across 10 scripts | [pandas.txt](licence-texts.md#lic-pandas) |
-| [Polars](https://github.com/pola-rs/polars) | 1.32.3 | MIT | Ritchie Vink; NVIDIA Corporation (portions) | `run_report.py`, `summary_stats.py`, `make_sample_files.py`, `gene_body_coverage.py`, `molecule_coverage.py`, `molecule_discordance.py` | [polars.txt](licence-texts.md#lic-polars) |
+| [Polars](https://github.com/pola-rs/polars) | 1.42.1 | MIT | Ritchie Vink; NVIDIA Corporation (portions) | `run_report.py`, `summary_stats.py`, `make_sample_files.py`, `gene_body_coverage.py`, `molecule_coverage.py`, `molecule_discordance.py` | [polars.txt](licence-texts.md#lic-polars) |
 | [PyArrow (Apache Arrow)](https://github.com/apache/arrow) | 20.0.0 | Apache-2.0 | The Apache Software Foundation | Arrow/Parquet backend for Polars and fastexcel | [pyarrow.txt](licence-texts.md#lic-pyarrow) |
 | [pysam](https://github.com/pysam-developers/pysam) | 0.22.0 | MIT | Genome Research Ltd. and contributors | BAM/SAM access across 13 scripts | [pysam.txt](licence-texts.md#lic-pysam) |
 | [joblib](https://github.com/joblib/joblib) | 1.3.0 | BSD-3-Clause | The joblib developers | parallelism in `count_status_per_gene.py`, `gene_quantification.py`, `reconstruction_lengths.py`, `molecule_discordance.py` | [joblib.txt](licence-texts.md#lic-joblib) |
@@ -85,7 +85,7 @@ third-party material.
 
 ## 6. Scope
 
-This document was generated against the repository at version 1.4.0. It covers the
+This document was generated against the repository at version 1.4.1. It covers the
 Python libraries installed from `requirements.txt`, the external tools invoked from
 Snakemake `shell:` directives, the Python runtime, and the fonts shipped in
 `workflow/resources/`.
