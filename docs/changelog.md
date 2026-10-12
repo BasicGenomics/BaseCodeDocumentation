@@ -17,6 +17,19 @@ Rerunning the Processing Pipeline also means rerunning IsoQuant. Not the reverse
 
 ## BaseCode Processing Pipeline
 
+### 1.4.2
+
+<span class="rerun rerun-compare"><span class="rerun-label">Data from earlier versions</span><span class="rerun-status">Rerun for comparability</span></span>
+
+- The stitched BAM's read counts (`NR`, `TC`, `IC`, `FC`, `ER`, `IR`) and end flags (`T1`, `F1`)
+  now count only reads that remain in the molecule after cleanup. Some counts drop, so
+  end-to-end percentages can shift slightly. Molecule sequences and alignments are unchanged.
+- In `comprehensive` mode: per-molecule coverage (`QC_files/molecule_coverage/`) is no longer
+  written, and gene body coverage adds a table by molecule class and length.
+- In `comprehensive` mode, insert sizes now span the whole read pair instead of running from the
+  start of one mate to the start of the other, and leave out spliced introns. The overlap file
+  reports `inner_distance` instead of `overlap_size`.
+
 ### 1.4.1
 
 <span class="rerun rerun-none"><span class="rerun-label">Basic-mode data</span><span class="rerun-status">No rerun needed</span></span> <span class="rerun rerun-recommended"><span class="rerun-label">Comprehensive-mode data</span><span class="rerun-status">Rerun recommended</span></span>

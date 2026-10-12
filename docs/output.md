@@ -94,6 +94,7 @@ Most intermediate files are deleted during the run. These are kept:
 │  ├─ reconstruct/{name}/
 │  │  └─ {sample}.merged_genes.csv
 │  ├─ stitch/{name}/
+│  │  ├─ {sample}.stitched_cleanup.csv
 │  │  ├─ {sample}.stitched_deletions.tsv
 │  │  └─ {sample}.stitched_error.log
 │  ├─ {name}.reads.aligned.trimmed.genetagged.sorted.bam
@@ -105,6 +106,7 @@ Most intermediate files are deleted during the run. These are kept:
 | File | Description |
 |------|-------------|
 | reconstruct/{name}/{sample}.merged_genes.csv | Groups of overlapping genes that share reads and were reconstructed together, with the number of reads they share. |
+| stitch/{name}/{sample}.stitched_cleanup.csv | What each cleanup step removed while stitching (reads, molecules, trimmed bases), per sample and read class. |
 | stitch/{name}/{sample}.stitched_deletions.tsv | Every deletion in a stitched molecule, and whether the molecule's reads show a real deletion (`is_true_deletion`) or an unsequenced gap. |
 | stitch/{name}/{sample}.stitched_error.log | Molecules that could not be stitched and were left out of the stitched BAM, one per line. |
 | {name}.reads.aligned.trimmed.genetagged.sorted.bam | The aligned, trimmed reads with their gene assignment, before reconstruction. |
@@ -139,8 +141,7 @@ With `mode: comprehensive`, the run also writes:
 |------|-------------|
 | downstream/ | Poly-A sites and transcription start sites (BED and bedGraph), from molecules with an observed 3′ or 5′ end. |
 | QC_files/fastq/multiqc/ | A MultiQC report across the FASTQ QC. |
-| QC_files/gene_body_coverage/ | Coverage of molecules along gene bodies. |
+| QC_files/gene_body_coverage/ | Coverage of molecules along gene bodies, overall and by molecule class and length. |
 | QC_files/general_stats/ | Read types and mapping categories. |
-| QC_files/insert_overlap_sizes/ | Insert, mate overlap and aligned sizes, and TSO capture. |
+| QC_files/insert_overlap_sizes/ | Insert sizes (first to last aligned base of the read pair, leaving out introns that a read is spliced across), the inner distance between mates (negative where they overlap), aligned sizes, and TSO capture. |
 | QC_files/mapping_quality/ | Mapping quality, overall and per read type. |
-| QC_files/molecule_coverage/ | Coverage per molecule. |

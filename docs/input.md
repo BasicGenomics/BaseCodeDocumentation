@@ -301,7 +301,7 @@ The pipeline uses 30 threads unless `--threads` is added after the image name in
 `docker run` command (see [Starting the Pipeline](pipeline.md)). A thread here is a logical
 CPU, and most processors run two per physical core. The recommended 24 cores therefore give
 48 threads, so the default of 30 fits. On the 12-core minimum, use
-`basicgenomics/basecode:1.4.1 --threads 24`.
+`basicgenomics/basecode:1.4.2 --threads 24`.
 
 (input-tool-options)=
 #### Tool options

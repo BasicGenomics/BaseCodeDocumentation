@@ -39,7 +39,7 @@ both pipelines.
 ### Which image tag should I use?
 
 The newest release. `basicgenomics/basecode:latest` points at it. For a study, pull a specific
-version such as `1.4.1`, so every sample runs on the same version. Current versions are listed
+version such as `1.4.2`, so every sample runs on the same version. Current versions are listed
 on [Container images](containers.md).
 
 ## Reference data
