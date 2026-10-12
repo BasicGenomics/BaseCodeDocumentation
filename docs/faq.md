@@ -30,12 +30,6 @@ file. If the two pipelines are given different names, that file does not exist a
 fails immediately. Set the same `name` in `config/config.yaml` and
 `config_isoquant/config.yaml`.
 
-### Why are my output files owned by `root`?
-
-The Docker daemon runs as root by default, so files created inside the container are owned by
-root. Change ownership after the run with `sudo chown -R user:group results/`. This applies to
-both pipelines.
-
 ### Which image tag should I use?
 
 The newest release. `basicgenomics/basecode:latest` points at it. For a study, pull a specific
@@ -105,10 +99,7 @@ See [Input](isoquant-input.md).
 
 ### Something failed, where do I look?
 
-Each pipeline writes per-step logs into its `logs/` folder inside `results/`. The IsoQuant
-pipeline additionally records the resolved run configuration and component versions in
-`results/isoquant/logs/{name}.versions.log`, and points at
-`results/isoquant/.snakemake/log/` on failure.
+See [Troubleshooting](troubleshooting.md), by pipeline and tool.
 
 ### Is there a community I can join?
 

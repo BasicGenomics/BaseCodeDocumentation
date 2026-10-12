@@ -19,3 +19,5 @@ build:
     # standalone interactive demos, embedded by iframe (MyST does not copy these)
     - mkdir -p $READTHEDOCS_OUTPUT/html/demo
     - cp docs/_static/demo/*.html $READTHEDOCS_OUTPUT/html/demo/
+    - mkdir -p $READTHEDOCS_OUTPUT/html/downloads
+    - cp docs/_static/downloads/* $READTHEDOCS_OUTPUT/html/downloads/

@@ -27,11 +27,17 @@ project:
         - file: isoquant-pipeline.md
         - file: isoquant-output.md
         - file: isoquant-tags.md
+    - title: IsoViewer
+      children:
+        - file: isoviewer.md
+        - file: isoviewer-install.md
+        - file: isoviewer-build.md
     - file: config-builder.md
     - file: vignettes.md
       children:
         - file: vignette-bam-tags.md
     - file: faq.md
+    - file: troubleshooting.md
     - file: citation.md
     - file: containers.md
     - file: changelog.md
@@ -47,6 +53,10 @@ project:
           children:
             - file: third-party-isoquant.md
             - file: licence-texts-isoquant.md
+        - title: IsoViewer
+          children:
+            - file: third-party-isoviewer.md
+            - file: licence-texts-isoviewer.md
 site:
   title: Basic Genomics Pipelines
   template: book-theme

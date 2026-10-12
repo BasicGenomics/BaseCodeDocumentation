@@ -1,0 +1,22 @@
+{
+ "python-psf": "conda-forge libpython 3.12.14 (h0c77377_3_cpython), info/licenses/LICENSE",
+ "python-third-party": "https://raw.githubusercontent.com/python/cpython/v3.12.14/Doc/license.rst, from the section on incorporated software",
+ "openssl": "conda-forge openssl 3.6.5 (h781a0a9_0), info/licenses/LICENSE.txt",
+ "sqlite": "SQLite source code header; https://www.sqlite.org/copyright.html",
+ "libffi": "conda-forge libffi 3.7.0 (h81df57d_1), info/licenses/LICENSE",
+ "expat": "conda-forge libexpat 2.8.5 (hd2095e1_0), info/licenses/COPYING",
+ "xz": "conda-forge liblzma 5.8.3 (hb03c661_1), info/licenses/COPYING + conda-forge liblzma 5.8.3 (hb03c661_1), info/licenses/COPYING.0BSD",
+ "bzip2": "conda-forge bzip2 1.0.8 (hda65f42_10), info/licenses/LICENSE",
+ "libuuid": "https://raw.githubusercontent.com/util-linux/util-linux/v2.42.4/libuuid/COPYING + https://raw.githubusercontent.com/util-linux/util-linux/v2.42.4/Documentation/licenses/COPYING.BSD-3-Clause",
+ "numpy": "numpy 2.4.1 wheel, licenses/LICENSE.txt + numpy 2.4.1 wheel, licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt + numpy 2.4.1 wheel, licenses/numpy/_core/src/common/pythoncapi-compat/COPYING + numpy 2.4.1 wheel, licenses/numpy/_core/src/highway/LICENSE + numpy 2.4.1 wheel, licenses/numpy/_core/src/multiarray/dragon4_LICENSE.txt + numpy 2.4.1 wheel, licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md + numpy 2.4.1 wheel, licenses/numpy/_core/src/umath/svml/LICENSE + numpy 2.4.1 wheel, licenses/numpy/fft/pocketfft/LICENSE.md + numpy 2.4.1 wheel, licenses/numpy/linalg/lapack_lite/LICENSE.txt + numpy 2.4.1 wheel, licenses/numpy/ma/LICENSE + numpy 2.4.1 wheel, licenses/numpy/random/LICENSE.md + numpy 2.4.1 wheel, licenses/numpy/random/src/distributions/LICENSE.md + numpy 2.4.1 wheel, licenses/numpy/random/src/mt19937/LICENSE.md + numpy 2.4.1 wheel, licenses/numpy/random/src/pcg64/LICENSE.md + numpy 2.4.1 wheel, licenses/numpy/random/src/philox/LICENSE.md + numpy 2.4.1 wheel, licenses/numpy/random/src/sfc64/LICENSE.md + numpy 2.4.1 wheel, licenses/numpy/random/src/splitmix64/LICENSE.md",
+ "pandas": "pandas 2.3.3 wheel, LICENSE",
+ "python-dateutil": "python_dateutil 2.9.0.post0 wheel, LICENSE",
+ "pytz": "pytz 2026.5 wheel, LICENSE.txt",
+ "six": "six 1.17.0 wheel, LICENSE",
+ "nuitka-runtime": "nuitka 4.3 wheel, licenses/NOTICE.txt + nuitka 4.3 wheel, licenses/LICENSE-RUNTIME.txt",
+ "nuitka-agpl-3.0": "nuitka 4.3 wheel, licenses/LICENSE.txt",
+ "zstd": "nuitka 4.3 wheel, nuitka/build/inline_copy/zstd/LICENSE.txt",
+ "plotly": "https://raw.githubusercontent.com/plotly/plotly.js/v2.35.2/LICENSE + https://unpkg.com/plotly.js@2.35.2/dist/plotly.min.js.LICENSE.txt",
+ "d3": "https://raw.githubusercontent.com/d3/d3/v7.9.0/LICENSE",
+ "mona-sans": "IsoViewer 2.3.6 source, web/assets/fonts/mona-sans-OFL.txt"
+}

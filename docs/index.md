@@ -19,6 +19,8 @@ flowchart LR
   BAM --> P2["BaseCode<br/>IsoQuant Pipeline"]:::pipe
   BAM -.-> OTHER["Other downstream<br/>analyses"]:::opt
   P2 --> OUT["Isoform counts and TPM<br/>(TSV, MuData)"]:::io
+  OUT --> IV["IsoViewer"]:::pipe
+  IV --> REP["Interactive report<br/>(HTML)"]:::io
   classDef pipe fill:#EC008C,stroke:#EC008C,color:#FFFFFF,font-weight:600
   classDef io fill:#F3F4F6,stroke:#9CA3AF,color:#111317
   classDef opt fill:#FFFFFF,stroke:#9CA3AF,color:#4B5563,stroke-dasharray:4 3
@@ -52,6 +54,15 @@ annotation.
 :::
 
 ::::
+
+## Viewing results <span class="badge-new">New</span>
+
+:::{card} IsoViewer
+:link: isoviewer.md
+
+Builds one interactive HTML report from the IsoQuant results of a run, to explore the genes,
+transcripts and samples, and to share the results.
+:::
 
 <div class="statusbar">
 

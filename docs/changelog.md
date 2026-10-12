@@ -65,7 +65,7 @@ Rerunning the Processing Pipeline also means rerunning IsoQuant. Not the reverse
 
 ### 1.3.1
 
-Where this changelog starts. Earlier releases are not listed.
+Where this changelog starts. Earlier releases are not listed or available.
 
 ## BaseCode IsoQuant Pipeline
 
@@ -88,4 +88,13 @@ Where this changelog starts. Earlier releases are not listed.
 
 ### 1.4.1
 
-Where this changelog starts. Earlier releases are not listed.
+Where this changelog starts. Earlier releases are not listed or available.
+
+## IsoViewer
+
+### 2.3.6
+
+- First release as a standalone program for Linux, downloadable from
+  [Installation](isoviewer-install.md). No Python or Docker is needed to run it.
+
+Where this changelog starts. Earlier versions are not listed or available.
