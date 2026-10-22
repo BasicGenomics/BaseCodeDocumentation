@@ -15,6 +15,7 @@ Newest first. Each release says what to do with data processed with an earlier v
 
 Rerunning the Processing Pipeline also means rerunning IsoQuant. Not the reverse.
 
+(changelog-processing)=
 ## BaseCode Processing Pipeline
 
 ### 1.4.2
@@ -67,6 +68,7 @@ Rerunning the Processing Pipeline also means rerunning IsoQuant. Not the reverse
 
 Where this changelog starts. Earlier releases are not listed or available.
 
+(changelog-isoquant)=
 ## BaseCode IsoQuant Pipeline
 
 ### 1.4.3
@@ -90,6 +92,7 @@ Where this changelog starts. Earlier releases are not listed or available.
 
 Where this changelog starts. Earlier releases are not listed or available.
 
+(changelog-isoviewer)=
 ## IsoViewer
 
 ### 2.3.6

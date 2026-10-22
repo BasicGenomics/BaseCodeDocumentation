@@ -809,6 +809,67 @@ html.dark .footer a {
   color: #ddd;
 }
 
+.latest-versions {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 20;
+  width: 16rem;
+  padding: 0.7rem 0.9rem 0.6rem;
+  border: 1px solid var(--brand-rule);
+  border-radius: 8px;
+  background: var(--card-bg);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.latest-versions > p {
+  margin: 0 0 0.3rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-accent);
+}
+
+.latest-versions ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.latest-versions li,
+.latest-versions li p {
+  margin: 0;
+  padding: 0;
+}
+
+.latest-versions li a {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.12rem 0;
+  color: var(--note-fg) !important;
+  text-decoration: none !important;
+}
+
+.latest-versions li a strong {
+  color: var(--brand-link);
+  font-weight: 600;
+}
+
+.latest-versions li a:hover {
+  color: var(--brand-link) !important;
+}
+
+@media (min-width: 1280px) {
+  .myst-outline { max-height: calc(100vh - 290px) !important; }
+}
+
+@media (max-width: 1279px) {
+  .latest-versions { display: none; }
+}
+
 .rerun {
   --rerun-border: var(--brand-rule);
   --rerun-bg: var(--card-bg);
