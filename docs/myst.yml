@@ -16,6 +16,7 @@ project:
         - file: overview.md
         - file: preparation.md
         - file: input.md
+        - file: config-builder.md
         - file: pipeline.md
         - file: output.md
         - file: functions.md
@@ -24,6 +25,7 @@ project:
       children:
         - file: isoquant.md
         - file: isoquant-input.md
+        - file: isoquant-config-builder.md
         - file: isoquant-pipeline.md
         - file: isoquant-output.md
         - file: isoquant-tags.md
@@ -32,16 +34,17 @@ project:
         - file: isoviewer.md
         - file: isoviewer-install.md
         - file: isoviewer-build.md
-    - file: config-builder.md
+    - file: containers.md
+    - file: cloud.md
     - file: vignettes.md
       children:
-        - file: vignette-bam-tags.md
+        - file: vignette-split-by-sample.md
+        - file: vignette-full-length.md
+        - file: vignette-igv-tags.md
     - file: faq.md
     - file: troubleshooting.md
-    - file: citation.md
-    - file: containers.md
     - file: changelog.md
-    - file: cloud.md
+    - file: citation.md
     - title: Legal
       children:
         - file: legal.md

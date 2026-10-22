@@ -908,43 +908,38 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  --read: color-mix(in srgb, var(--brand-accent) 10%, transparent);
+  --l1: color-mix(in srgb, var(--brand-accent) 2.5%, transparent);
+  --l2: color-mix(in srgb, var(--brand-accent) 4.5%, transparent);
+  --l3: color-mix(in srgb, var(--brand-accent) 7%, transparent);
+  --l4: color-mix(in srgb, var(--brand-accent) 10%, transparent);
   background-image:
-    linear-gradient(90deg, var(--read) 0 390px, transparent 390px),
-    linear-gradient(90deg, var(--read) 0 250px, transparent 250px),
-    linear-gradient(90deg, var(--read) 0 310px, transparent 310px),
-    linear-gradient(90deg, var(--read) 0 310px, transparent 310px),
-    linear-gradient(90deg, var(--read) 0 190px, transparent 190px),
-    linear-gradient(90deg, var(--read) 0 390px, transparent 390px),
-    linear-gradient(90deg, var(--read) 0 140px, transparent 140px),
-    linear-gradient(90deg, var(--read) 0 230px, transparent 230px),
-    linear-gradient(90deg, var(--read) 0 170px, transparent 170px),
-    linear-gradient(90deg, var(--read) 0 290px, transparent 290px);
+    linear-gradient(90deg, var(--l2) 0 260px, transparent 260px 420px, var(--l1) 420px 760px, var(--l3) 1010px, transparent 1010px 1200px, var(--l4) 1200px 1980px, transparent 1980px),
+    linear-gradient(90deg, var(--l3) 0 150px, var(--l2) 150px 600px, transparent 600px 760px, var(--l1) 760px 1300px, transparent 1300px 1640px, var(--l4) 1640px 2080px, transparent 2080px),
+    linear-gradient(90deg, transparent 0 120px, var(--l1) 120px 520px, transparent 520px 700px, var(--l4) 700px 1150px, var(--l3) 1150px 1400px, transparent 1400px),
+    linear-gradient(90deg, var(--l2) 0 480px, transparent 480px 760px, var(--l1) 760px 980px, var(--l3) 1250px 1720px, transparent 1720px 2000px, var(--l2) 2000px 2400px, transparent 2400px),
+    linear-gradient(90deg, transparent 0 200px, var(--l3) 200px 640px, transparent 640px 880px, var(--l1) 880px 1500px, transparent 1500px 1650px, var(--l4) 1650px 1950px, transparent 1950px),
+    linear-gradient(90deg, var(--l4) 0 380px, transparent 380px 600px, var(--l2) 600px 1140px, var(--l1) 1140px 1420px, transparent 1420px 1820px, var(--l3) 1820px 2200px, transparent 2200px),
+    linear-gradient(90deg, transparent 0 90px, var(--l1) 90px 700px, transparent 700px 1000px, var(--l3) 1000px 1500px, var(--l4) 1500px 1760px, transparent 1760px),
+    linear-gradient(90deg, var(--l2) 0 300px, transparent 300px 520px, var(--l4) 520px 900px, var(--l2) 900px 1060px, transparent 1060px 1400px, var(--l1) 1400px 2150px, transparent 2150px),
+    linear-gradient(90deg, transparent 0 340px, var(--l3) 340px 820px, transparent 820px 1000px, var(--l1) 1000px 1260px, var(--l2) 1480px 1900px, transparent 1900px),
+    linear-gradient(90deg, var(--l1) 0 560px, transparent 560px 720px, var(--l3) 720px 1300px, transparent 1300px 1600px, var(--l4) 1600px 1880px, var(--l2) 1880px 2200px, transparent 2200px);
   background-size:
-    430px 5px, 640px 5px, 360px 5px, 780px 5px, 510px 5px,
-    920px 5px, 400px 5px, 570px 5px, 450px 5px, 700px 5px;
+    2200px 5px, 2400px 5px, 1900px 5px, 2600px 5px, 2100px 5px,
+    2300px 5px, 2000px 5px, 2500px 5px, 2200px 5px, 2400px 5px;
   background-position:
-    0 6%, 0 15%, 0 24%, 0 33%, 0 42%,
-    0 53%, 0 62%, 0 71%, 0 80%, 0 91%;
+    -300px 6%, -900px 15%, -150px 24%, -1200px 33%, -500px 42%,
+    -700px 53%, -50px 62%, -1000px 71%, -400px 80%, -800px 91%;
   background-repeat: repeat-x;
-  animation: bc-reads 22s linear infinite;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(50% - 760px), rgb(0 0 0 / 0.6) calc(50% - 700px) calc(50% - 470px), rgb(0 0 0 / 0.3) calc(50% - 400px) calc(50% + 340px), rgb(0 0 0 / 0.6) calc(50% + 410px) calc(50% + 690px), #000 calc(50% + 750px));
+  mask-image: linear-gradient(90deg, #000 calc(50% - 760px), rgb(0 0 0 / 0.6) calc(50% - 700px) calc(50% - 470px), rgb(0 0 0 / 0.3) calc(50% - 400px) calc(50% + 340px), rgb(0 0 0 / 0.6) calc(50% + 410px) calc(50% + 690px), #000 calc(50% + 750px));
 }
 
-@keyframes bc-reads {
-  from {
-    background-position:
-      0 6%, 0 15%, 0 24%, 0 33%, 0 42%,
-      0 53%, 0 62%, 0 71%, 0 80%, 0 91%;
+@media (max-width: 1279px) {
+  body::before {
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 0.35;
   }
-  to {
-    background-position:
-      430px 6%, -640px 15%, 360px 24%, -780px 33%, 510px 42%,
-      -920px 53%, 400px 62%, -570px 71%, 450px 80%, -700px 91%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body::before { animation: none; }
 }
 
 ::selection {

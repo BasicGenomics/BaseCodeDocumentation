@@ -20,10 +20,12 @@ The processed data BAM file contains the following tags:
 | `CV` | String | Read depth along the molecule, as `start-end:depth` runs separated by `;`, counted in bases from the molecule's first aligned position |
 
 A molecule counts as end-to-end in the run report when `TC` > 0 and `FC` > 0. `T1` and `F1`
-are a stricter, orientation-checked version of the same test.
+are a stricter, orientation-checked version of the same test. To keep only these molecules, see
+the vignette [Filtering full-length molecules](vignette-full-length.md).
 
 The BAM also carries `NP`, `NS`, `PC`, `PD`, `SC`, `CC` and `SP`. These are diagnostic and may
 change between releases.
 
-Practical recipes that use these tags, such as splitting a BAM by sample and inspecting tags
-in IGV, are in the vignette [Working with BAM tags](vignette-bam-tags.md).
+Practical recipes that use these tags are in the vignettes
+[Splitting a BAM by sample](vignette-split-by-sample.md) and
+[Viewing reads by tag in IGV](vignette-igv-tags.md).

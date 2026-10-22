@@ -1,9 +1,9 @@
-# Container images
+# Downloads and images
+
+## Container images
 
 Both pipelines are distributed as Docker images from the Basic Genomics organisation on
 Docker Hub: [hub.docker.com/u/basicgenomics](https://hub.docker.com/u/basicgenomics).
-
-## Versions
 
 :::{div}
 :class: table-centered
@@ -23,3 +23,18 @@ Running the BaseCode Processing Pipeline container is covered in
 
 Running the BaseCode IsoQuant Pipeline container is covered in
 [Starting the Pipeline](isoquant-pipeline.md).
+
+## IsoViewer
+
+| Version | File | Size |
+| --- | --- | --- |
+| 2.3.6 | [isoviewer-2.3.6-linux-x86_64.tar.gz](https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.3.6-linux-x86_64.tar.gz) | 45 MiB |
+
+Requirements and installation are covered in [Installation](isoviewer-install.md).
+
+## Scripts
+
+| Script | Covered in |
+| --- | --- |
+| [split_bam_by_sample.sh](https://basecode.readthedocs.io/en/latest/downloads/split_bam_by_sample.sh) | [Splitting a BAM by sample](vignette-split-by-sample.md) |
+| [filter_full_length.sh](https://basecode.readthedocs.io/en/latest/downloads/filter_full_length.sh) | [Filtering full-length molecules](vignette-full-length.md) |

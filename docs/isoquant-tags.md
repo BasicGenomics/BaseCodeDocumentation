@@ -4,7 +4,7 @@ When `annotate_bam` is `True`, the pipeline writes
 `results/isoquant/{name}.annotated.sorted.bam`, the molecules carrying their IsoQuant
 assignment in custom tags. This makes it possible to inspect assignments directly in a genome
 browser, using the same colour/group/sort-by-tag workflow described in
-[Working with BAM tags](vignette-bam-tags.md).
+[Viewing reads by tag in IGV](vignette-igv-tags.md).
 
 All tags written by the BaseCode Processing Pipeline are preserved except `CV`, so `SM`, `XT`,
 `NR`, `ER`, `IR`, `FC`, `IC` and `TC` remain available. See

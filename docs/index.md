@@ -94,7 +94,7 @@ analysis, share approaches and answer each other's questions.
 - **New to the assay?** Start with the [BaseCode Processing Pipeline overview](overview.md).
 - **Have a question?** The [FAQ](faq.md) covers the questions that come up most often when
   analysing BaseCode data.
-- **Looking for the Docker images?** See [Container images](containers.md).
+- **Looking for the Docker images or downloads?** See [Downloads and images](containers.md).
 - **Going further with your results?** The [Vignettes](vignettes.md) are standalone guides
   for analyses built on top of pipeline output, such as working with the BAM tags and
   visualisation. Instructions for running each pipeline live in that pipeline's own section.

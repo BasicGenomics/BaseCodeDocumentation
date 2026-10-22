@@ -34,7 +34,7 @@ fails immediately. Set the same `name` in `config/config.yaml` and
 
 The newest release. `basicgenomics/basecode:latest` points at it. For a study, pull a specific
 version such as `1.4.2`, so every sample runs on the same version. Current versions are listed
-on [Container images](containers.md).
+on [Downloads and images](containers.md).
 
 ## Reference data
 
@@ -93,7 +93,8 @@ can be turned off. See [Annotation collapsing](isoquant-input.md#annotation-coll
 
 Only if the analysis calls for it. Setting `full_length_only` passes just the molecules whose
 3′ and 5′ ends were both observed, which is stricter but reduces depth. It is off by default.
-See [Input](isoquant-input.md).
+See [Input](isoquant-input.md). To filter the stitched BAM for use in other tools, see
+[Filtering full-length molecules](vignette-full-length.md).
 
 ## Getting help
 

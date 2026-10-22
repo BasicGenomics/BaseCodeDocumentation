@@ -259,6 +259,11 @@
     render();
   }
 
+  if (SCHEMA[location.hash.slice(1)]) {
+    current = location.hash.slice(1);
+    document.querySelector(".tabs").style.display = "none";
+  }
+
   document.querySelectorAll(".copy").forEach(b => {
     b.onclick = () => {
       navigator.clipboard.writeText($(b.dataset.target).textContent).then(() => {
@@ -268,7 +273,7 @@
     };
   });
 
-  render();
+  sel();
 })();
 </script>
 </body>

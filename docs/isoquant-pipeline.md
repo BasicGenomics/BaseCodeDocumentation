@@ -18,7 +18,7 @@ No FASTQ mount is needed: the pipeline works entirely from the BAM produced by t
 The pipeline is then started using `docker run`. After it has finished, the ownership of the
 results folder should be changed to the current user using `chown`.
 
-The [configuration builder](config-builder.md) writes this command for you, with the mount
+The [configuration builder](isoquant-config-builder.md) writes this command for you, with the mount
 paths filled in.
 
 Example commands to start the BaseCode IsoQuant Pipeline, run from the `BaseCode/` folder:

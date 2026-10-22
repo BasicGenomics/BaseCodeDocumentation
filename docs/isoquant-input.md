@@ -72,7 +72,7 @@ are required; every other option has a carefully chosen default tuned for BaseCo
 container, not the paths on your host machine. The paths on your host machine are specified
 when running the pipeline (see [Starting the Pipeline](isoquant-pipeline.md)).
 
-The [configuration builder](config-builder.md) can generate this file, and the matching
+The [configuration builder](isoquant-config-builder.md) can generate this file, and the matching
 `docker run` command, from a form.
 
 Minimal configuration file (`config.yaml`):

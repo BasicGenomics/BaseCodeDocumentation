@@ -1,14 +1,13 @@
 # Configuration builder
 
 Choose your options and the builder writes the `config.yaml` and the matching `docker run`
-command for you. Values that differ from the pipeline default are highlighted, and `name` is
-kept in step across both pipelines, since they must match for the IsoQuant pipeline to find
-the BAM the processing pipeline produced.
+command for the BaseCode Processing Pipeline. Values that differ from the default are
+highlighted.
 
-<iframe src="../demo/config-builder.html"
-        title="Interactive configuration builder for the BaseCode pipelines"
+<iframe src="../demo/config-builder.html#basecode"
+        title="Interactive configuration builder for the BaseCode Processing Pipeline"
         class="demo-frame builder"></iframe>
 
-Every option is documented in full under
-[Input](input.md) for the processing pipeline and
-[Input](isoquant-input.md) for the IsoQuant pipeline.
+Every option is documented in full under [Input](input.md). Keep the `name` you choose here:
+the [BaseCode IsoQuant Pipeline](isoquant-config-builder.md) needs the same one to find the BAM
+this pipeline produces.
