@@ -810,16 +810,11 @@ html.dark .footer a {
 }
 
 .latest-versions {
-  position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  z-index: 20;
-  width: 16rem;
+  margin: 0.5rem 0;
   padding: 0.7rem 0.9rem 0.6rem;
   border: 1px solid var(--brand-rule);
   border-radius: 8px;
   background: var(--card-bg);
-  box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
   font-size: 0.78rem;
   line-height: 1.45;
 }
@@ -860,14 +855,6 @@ html.dark .footer a {
 
 .latest-versions li a:hover {
   color: var(--brand-link) !important;
-}
-
-@media (min-width: 1280px) {
-  .myst-outline { max-height: calc(100vh - 290px) !important; }
-}
-
-@media (max-width: 1279px) {
-  .latest-versions { display: none; }
 }
 
 .rerun {
@@ -918,7 +905,6 @@ html.dark .rerun-recommended {
   --rerun-fg: var(--bg-black);
 }
 
-.myst-primary-sidebar-footer,
 .myst-made-with-myst,
 .myst-fm-downloads-dropdown {
   display: none !important;
