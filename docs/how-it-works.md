@@ -1,6 +1,6 @@
 # How it works
 
-RNA BaseCode reconstructs full-length transcripts from ordinary short-read sequencing. The
+RNA BaseCode reconstructs transcripts end to end from ordinary short-read sequencing. The
 step that makes this possible is pattern matching: reverse transcription leaves each RNA
 molecule with its own signature of mismatches, so reads coming from the same original
 molecule can be recognised and stitched back together.

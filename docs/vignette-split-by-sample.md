@@ -43,5 +43,5 @@ bash ../split_bam_by_sample.sh ../results/{name}.stitched.molecules.sorted.bam
 ```
 
 This writes `{sample}.bam` and its index for every sample, named after the `SM` value. To split
-only the full-length molecules, filter first as in
-[Filtering full-length molecules](vignette-full-length.md) and split the filtered BAM.
+only the end-to-end molecules, filter first as in
+[Filtering end-to-end molecules](vignette-end-to-end.md) and split the filtered BAM.

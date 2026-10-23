@@ -39,7 +39,7 @@ project:
     - file: vignettes.md
       children:
         - file: vignette-split-by-sample.md
-        - file: vignette-full-length.md
+        - file: vignette-end-to-end.md
         - file: vignette-igv-tags.md
     - file: faq.md
     - file: troubleshooting.md

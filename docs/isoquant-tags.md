@@ -16,7 +16,7 @@ Added while adapting the stitched BAM for IsoQuant.
 
 | Tag | Type | Description |
 |-----|---------|------------------------------------|
-| `CP` | Integer | Complete (full-length) molecule: `1` when both ends were observed (`TC` > 0 and `FC` > 0), otherwise `0`. This is the flag `full_length_only` filters on. |
+| `CP` | Integer | Complete (end-to-end) molecule: `1` when both ends were observed (`TC` > 0 and `FC` > 0), otherwise `0`. This is the flag `full_length_only` filters on. |
 | `AD` | String | What was adapted for IsoQuant: `gap` (molecule contains an unsequenced inner gap), `polya` (a synthetic poly-A tail was added because the 3′ end was observed), `gap+polya` (both), or `none`. |
 
 ## IsoQuant assignment

@@ -74,12 +74,12 @@ and `ZE` tags. Set `duplicate_mode` to `best` or `first` for a single isoform pe
 
 ## Analysis choices
 
-### Why does BaseCode data need its own IsoQuant options?
+### Why does RNA BaseCode data need its own IsoQuant options?
 
 Reconstructed molecules differ from natively sequenced long reads in two ways: they contain
 unsequenced inner gaps that appear as CIGAR deletions, and their ends are measured rather than
 inferred. BaseCode mode imputes structure across those gaps and disables the exon corrector.
-See [Why BaseCode data needs its own options](isoquant-input.md#basecode-options).
+See [Why RNA BaseCode data needs its own options](isoquant-input.md#basecode-options).
 
 ### Why does the pipeline collapse the reference annotation?
 
@@ -89,12 +89,12 @@ molecules from a single transcript are spread across several near-identical entr
 the counts and making unambiguous assignments look ambiguous. Collapsing is on by default and
 can be turned off. See [Annotation collapsing](isoquant-input.md#annotation-collapsing).
 
-### Should I analyse only full-length molecules?
+### Should I analyse only end-to-end molecules?
 
 Only if the analysis calls for it. Setting `full_length_only` passes just the molecules whose
 3′ and 5′ ends were both observed, which is stricter but reduces depth. It is off by default.
 See [Input](isoquant-input.md). To filter the stitched BAM for use in other tools, see
-[Filtering full-length molecules](vignette-full-length.md).
+[Filtering end-to-end molecules](vignette-end-to-end.md).
 
 ## Getting help
 

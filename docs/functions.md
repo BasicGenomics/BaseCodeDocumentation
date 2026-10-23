@@ -21,7 +21,7 @@ The processed data BAM file contains the following tags:
 
 A molecule counts as end-to-end in the run report when `TC` > 0 and `FC` > 0. `T1` and `F1`
 are a stricter, orientation-checked version of the same test. To keep only these molecules, see
-the vignette [Filtering full-length molecules](vignette-full-length.md).
+the vignette [Filtering end-to-end molecules](vignette-end-to-end.md).
 
 The BAM also carries `NP`, `NS`, `PC`, `PD`, `SC`, `CC` and `SP`. These are diagnostic and may
 change between releases.

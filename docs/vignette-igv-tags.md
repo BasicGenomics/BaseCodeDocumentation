@@ -60,6 +60,6 @@ stitched (`NR`).
 | `SM` | stitched, annotated | colour or group by sample |
 | `XT` | stitched, annotated | group by gene where genes overlap |
 | `NR` | stitched, annotated | sort by the number of reads stitched |
-| `CP` | annotated | group full-length molecules (`1`) apart from the rest |
+| `CP` | annotated | group end-to-end molecules (`1`) apart from the rest |
 | `ZA` | annotated | colour by assignment type, such as `unique` or `ambiguous` |
 | `ZI` | annotated | group by assigned isoform |

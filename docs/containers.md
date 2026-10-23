@@ -37,4 +37,4 @@ Requirements and installation are covered in [Installation](isoviewer-install.md
 | Script | Covered in |
 | --- | --- |
 | [split_bam_by_sample.sh](https://basecode.readthedocs.io/en/latest/downloads/split_bam_by_sample.sh) | [Splitting a BAM by sample](vignette-split-by-sample.md) |
-| [filter_full_length.sh](https://basecode.readthedocs.io/en/latest/downloads/filter_full_length.sh) | [Filtering full-length molecules](vignette-full-length.md) |
+| [filter_end_to_end.sh](https://basecode.readthedocs.io/en/latest/downloads/filter_end_to_end.sh) | [Filtering end-to-end molecules](vignette-end-to-end.md) |

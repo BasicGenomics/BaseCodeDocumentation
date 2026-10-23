@@ -13,7 +13,7 @@ results are, typically on the machine that ran the pipelines. See
 | Page | What it shows |
 | --- | --- |
 | **Overview** | Headline figures, and where every molecule went: counted or dropped. |
-| **QC: BaseCode** | Reads, reconstruction and full-length molecules. |
+| **QC: BaseCode** | Reads, reconstruction and end-to-end molecules. |
 | **QC: IsoQuant** | How molecules were assigned to genes and transcripts. |
 | **Genes** | All genes to filter and sort; open one to see its transcript variants. |
 | **Transcripts** | The same, per transcript. |

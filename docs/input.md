@@ -2,7 +2,7 @@
 
 ## Input overview
 The BaseCode Processing Pipeline is designed to process RNA BaseCode sequencing data. This section details the necessary input files required to run the pipeline.
-- **[FASTQ files](#input-fastq)**: BaseCode data is recommended to be sequenced paired-end, so at least two FASTQ files are required.
+- **[FASTQ files](#input-fastq)**: RNA BaseCode data is recommended to be sequenced paired-end, so at least two FASTQ files are required.
 - **[Sample sheet file](#input-samplesheet)**: The sample sheet contains the information needed to properly process each sequenced sample.
 - **[Genome reference and annotations](#input-reference)**: This set of files are needed to map the sequencing reads to the reference genome and specify genomic intervals for the reconstruction step.
 - **[Configuration file](#input-config)**: The configuration file points the pipeline to the required input files and defines other parameters needed to run the pipeline.
@@ -307,7 +307,7 @@ CPU, and most processors run two per physical core. The recommended 24 cores the
 #### Tool options
 
 The defaults for every tool the pipeline runs are kept in `workflow/resources/params.yaml`
-inside the image. They are tuned for BaseCode data, and most runs need no changes.
+inside the image. They are tuned for RNA BaseCode data, and most runs need no changes.
 
 The one worth considering is `max-concurrent-reads` in the reconstruct step: how many reads
 each slot keeps in reconstruction at once (default 5,000,000). A gene with more reads than

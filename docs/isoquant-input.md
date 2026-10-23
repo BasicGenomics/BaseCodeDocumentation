@@ -66,7 +66,7 @@ The proposed directory structure:
 
 The configuration file (`config_isoquant/config.yaml`) contains all the information needed to
 run the BaseCode IsoQuant Pipeline and uses the YAML language. Only `name` and `reference`
-are required; every other option has a carefully chosen default tuned for BaseCode data.
+are required; every other option has a carefully chosen default tuned for RNA BaseCode data.
 
 >**IMPORTANT** The paths specified in the configuration file are relative paths in the Docker
 container, not the paths on your host machine. The paths on your host machine are specified
@@ -114,7 +114,7 @@ variant_support_mode: both
 ```
 
 (basecode-options)=
-## Why BaseCode data needs its own options
+## Why RNA BaseCode data needs its own options
 
 BaseCode Synthetic Long Reads are *reconstructed* molecules, not natively sequenced long
 reads, and they differ from what IsoQuant normally sees in two ways that matter:
@@ -124,7 +124,7 @@ reads, and they differ from what IsoQuant normally sees in two ways that matter:
   sequenced. In the BAM this appears as a CIGAR deletion (`D`) block. Standard IsoQuant would
   read such a block as evidence of a genuine deletion rather than missing information.
 - **Their ends are recorded, not inferred.** The processing pipeline records whether a
-  molecule's 3′ and 5′ ends were actually observed, so full-length status is a measured
+  molecule's 3′ and 5′ ends were actually observed, so end-to-end status is a measured
   property rather than something guessed from the alignment. The two ends are not equally
   strong evidence, however. The 3′ end is anchored by poly-dT priming at the poly-A tail,
   whereas the 5′ end marks only where reverse transcription and template switching stopped.
@@ -155,7 +155,7 @@ another value in `config.yaml`.
 
 | Configuration option | Description |
 |----------------------|-------------|
-| **full_length_only** | **Optional.** Boolean. If `True`, only full-length molecules (`TC` > 0 and `FC` > 0, i.e. both ends observed) are passed to IsoQuant; all others are discarded. Useful for a strict, high-confidence isoform analysis at the cost of depth. [**Default:** `False`]. |
+| **full_length_only** | **Optional.** Boolean. If `True`, only end-to-end molecules (`TC` > 0 and `FC` > 0, i.e. both ends observed) are passed to IsoQuant; all others are discarded. Useful for a strict, high-confidence isoform analysis at the cost of depth. [**Default:** `False`]. |
 
 (annotation-collapsing)=
 ### Annotation collapsing
@@ -206,7 +206,7 @@ are; a single-exon coding transcript still has CDS blocks and is grouped by thos
 ### BaseCode mode
 
 These options control how unsequenced inner gaps are imputed and how ambiguous isoform
-assignments are resolved. They exist because BaseCode molecules carry information that native
+assignments are resolved. They exist because RNA BaseCode molecules carry information that native
 long reads do not. See [above](#basecode-options).
 
 | Configuration option | Description |
@@ -215,18 +215,18 @@ long reads do not. See [above](#basecode-options).
 | **basecode_keep_ambiguous_imputation** | **Optional.** Boolean. If `True`, molecules whose gap imputation was not unique are kept rather than skipped. Molecules that impute to no exons at all are still dropped either way. [**Default:** `True`]. |
 | **basecode_context_resolve** | **Optional.** Boolean. Context-constrained imputation. When a gap cannot be filled uniquely across the whole gene, the molecule's *sequenced* introns are used to narrow the candidates to compatible isoforms and the gap is resolved from those. Setting this to `False` reverts to gene-wide-only imputation, which leaves such gaps filled as a single maximal intron and recovers no internal exons. [**Default:** `True`]. |
 | **basecode_intron_resolve** | **Optional.** Boolean. When a molecule is consistent with several isoforms, resolve to the isoform(s) whose **intron chain** matches most exactly, ignoring terminal and UTR differences. This prevents an end-truncated molecule from being pulled to a near-duplicate isoform by a coincidental TSS or poly-A match when its splice chain uniquely identifies another isoform. [**Default:** `True`]. |
-| **basecode_end_resolve** | **Optional.** Boolean. For full-length molecules (`TC` > 0 and `FC` > 0) that still match several isoforms, keep only exact full-splice matches and drop the longer isoforms that the molecule is merely nested inside. Uses the validated molecule ends to break end-containment ambiguity. [**Default:** `True`]. |
-| **basecode_correct** | **Optional.** Boolean. Also run IsoQuant's exon corrector. BaseCode mode disables it by design, because BaseCode alignments do not need correcting. For comparison and experiments only. [**Default:** `False`]. |
+| **basecode_end_resolve** | **Optional.** Boolean. For end-to-end molecules (`TC` > 0 and `FC` > 0) that still match several isoforms, keep only exact full-splice matches and drop the longer isoforms that the molecule is merely nested inside. Uses the validated molecule ends to break end-containment ambiguity. [**Default:** `True`]. |
+| **basecode_correct** | **Optional.** Boolean. Also run IsoQuant's exon corrector. BaseCode mode disables it by design, because RNA BaseCode alignments do not need correcting. For comparison and experiments only. [**Default:** `False`]. |
 
 ### Assignment and quantification
 
 These are standard IsoQuant options; the defaults below are the values Basic Genomics has
-found appropriate for BaseCode data.
+found appropriate for RNA BaseCode data.
 
 | Configuration option | Description |
 |----------------------|-------------|
 | **data_type** | **Optional.** String. IsoQuant data type profile. BaseCode Synthetic Long Reads are accurate, so the PacBio HiFi profile is used. [**Default:** `pacbio_ccs`]. |
-| **matching_strategy** | **Optional.** String, one of `exact`, `precise`, `default`, `loose`. How strictly a molecule's splice sites must match an isoform. `precise` suits the low error rate of BaseCode molecules. [**Default:** `precise`]. |
+| **matching_strategy** | **Optional.** String, one of `exact`, `precise`, `default`, `loose`. How strictly a molecule's splice sites must match an isoform. `precise` suits the low error rate of RNA BaseCode molecules. [**Default:** `precise`]. |
 | **delta** | **Optional.** Integer or `auto`. Allowed deviation, in base pairs, when comparing splice sites. `auto` lets IsoQuant derive it from `data_type` and `matching_strategy`. [**Default:** `auto`]. |
 | **transcript_quantification** | **Optional.** String. Which read assignments count towards a transcript. `unique_only` counts only molecules assigned unambiguously to a single isoform, which keeps transcript-level counts conservative. [**Default:** `unique_only`]. |
 | **gene_quantification** | **Optional.** String. Which read assignments count towards a gene. `unique_splicing_consistent` additionally accepts molecules that are ambiguous between isoforms of the same gene but consistent with its splicing, since the gene assignment is unambiguous. [**Default:** `unique_splicing_consistent`]. |

@@ -6,7 +6,7 @@ Documentation
 
 RNA BaseCode is a library preparation chemistry that marks every RNA molecule with its own
 pattern, so that reads coming from the same original molecule can be recognised in ordinary
-short-read sequencing and stitched back into a full-length transcript. This site documents
+short-read sequencing and stitched back into the transcript end to end. This site documents
 the analysis side: the pipelines that take the reads from an RNA BaseCode library,
 reconstruct them into **BaseCode Synthetic Long Reads**, and quantify isoforms from them.
 
@@ -30,7 +30,7 @@ flowchart LR
 
 Reverse transcription leaves every RNA molecule with its own signature of mismatches. Reads
 carrying the same signature came from the same molecule, so they can be grouped and stitched
-back into a full-length transcript.
+back into the transcript end to end.
 [Try the interactive explainer](how-it-works.md).
 
 ## Pipelines
@@ -93,7 +93,7 @@ analysis, share approaches and answer each other's questions.
 
 - **New to the assay?** Start with the [BaseCode Processing Pipeline overview](overview.md).
 - **Have a question?** The [FAQ](faq.md) covers the questions that come up most often when
-  analysing BaseCode data.
+  analysing RNA BaseCode data.
 - **Looking for the Docker images or downloads?** See [Downloads and images](containers.md).
 - **Going further with your results?** The [Vignettes](vignettes.md) are standalone guides
   for analyses built on top of pipeline output, such as working with the BAM tags and
