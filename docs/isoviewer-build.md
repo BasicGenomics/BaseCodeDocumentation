@@ -8,7 +8,7 @@ cd /path/to/run/BaseCode
 isoviewer build .
 ```
 
-The report is written to the current folder as `{name}_isoviewer_v2.3.6.html`, where
+The report is written to the current folder as `{name}_isoviewer_v2.4.0.html`, where
 `{name}` is the `name` of the run. To write it somewhere else, add `-o`:
 
 ```bash

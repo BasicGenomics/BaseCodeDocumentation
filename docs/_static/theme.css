@@ -11,6 +11,10 @@
 
   --bg-pink-logo: #ec008c;
 
+  --bg-purple: #583092;
+  --bg-purple-light: #b39ce8;
+  --brand-purple: var(--bg-purple);
+
   --brand-accent: var(--bg-pink);
   --brand-link: var(--bg-pink-strong);
   --brand-rule: #e5e5e5;
@@ -39,6 +43,7 @@ html.dark {
   --brand-active: var(--bg-pink-light);
   --brand-active-tint: var(--bg-pink-light);
   --brand-nav: var(--bg-pink-light);
+  --brand-purple: var(--bg-purple-light);
 
   --note-rule: #4b5563;
   --note-bg: #23272f;
@@ -277,7 +282,7 @@ html.dark .myst-banner .dark\:text-blue-50 {
   position: absolute;
   inset: 0 0 auto 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--bg-pink), var(--bg-pink-light));
+  background: linear-gradient(90deg, var(--brand-purple), var(--brand-accent));
 }
 
 .myst-card:hover {
@@ -809,6 +814,12 @@ html.dark .footer a {
   color: #ddd;
 }
 
+article.content figure.screenshot img,
+article.content .screenshot img {
+  border: 1px solid var(--brand-rule);
+  border-radius: 8px;
+}
+
 .latest-versions {
   margin: 0.5rem 0;
   padding: 0.7rem 0.9rem 0.6rem;
@@ -1017,8 +1028,10 @@ article.content .demo-frame > div {
   article.content .demo-frame > div { height: 660px; }
 }
 
-article.content .demo-frame.builder > div { height: 760px; }
+article.content .demo-frame.builder > div { height: 1260px; }
 
-@media (max-width: 880px) {
-  article.content .demo-frame.builder > div { height: 1100px; }
+article.content .demo-frame.builder.isoquant > div { height: 2460px; }
+
+article.content svg[id^="mermaid"] a:hover .node > :first-child {
+  filter: brightness(1.12);
 }

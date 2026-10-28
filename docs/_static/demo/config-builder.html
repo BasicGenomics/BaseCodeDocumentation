@@ -83,7 +83,7 @@
   const SCHEMA = {
     basecode: {
       label: "BaseCode Processing Pipeline",
-      dir: "BaseCode", cfgdir: "config", image: "basicgenomics/basecode:1.4.0",
+      dir: "BaseCode", cfgdir: "config", image: "basicgenomics/basecode:latest",
       mounts: [["results","/usr/local/BaseCode/results/"],
                ["config","/usr/local/BaseCode/config/"],
                ["RESOURCES","/usr/local/app/resources/"],
@@ -109,7 +109,7 @@
     },
     isoquant: {
       label: "BaseCode IsoQuant Pipeline",
-      dir: "BaseCode", cfgdir: "config_isoquant", image: "basicgenomics/basecode_isoquant:1.4.3",
+      dir: "BaseCode", cfgdir: "config_isoquant", image: "basicgenomics/basecode_isoquant:latest",
       mounts: [["results","/usr/local/BaseCodeIsoQuant/results/"],
                ["config_isoquant","/usr/local/BaseCodeIsoQuant/config/"],
                ["RESOURCES","/usr/local/app/resources/"]],

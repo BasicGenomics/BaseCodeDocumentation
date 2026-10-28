@@ -95,6 +95,20 @@ Where this changelog starts. Earlier releases are not listed or available.
 (changelog-isoviewer)=
 ## IsoViewer
 
+### 2.4.0
+
+<span class="rerun rerun-none"><span class="rerun-label">Reports from earlier versions</span><span class="rerun-status">No rerun needed</span></span>
+
+- New **DESeq2 (R)** page: choose the samples, groups and settings, then download the counts,
+  the sample table and an R Markdown script that runs DESeq2 in R.
+- Samples can be renamed in the **Samples** table.
+- Gene pages show overlapping genes, the other mode's transcript models, and protein domains for
+  any selected transcript variants.
+- **QC: BaseCode** adds genes detected per sample, and per-sample tables for molecule length and
+  reads per molecule.
+- The gene and transcript name filters suggest names and IDs as you type.
+- "End-to-end" replaces "full-length", as in the rest of this documentation.
+
 ### 2.3.6
 
 - First release as a standalone program for Linux, downloadable from
