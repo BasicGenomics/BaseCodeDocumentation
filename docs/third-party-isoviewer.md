@@ -1,6 +1,6 @@
 # Third-party notices (IsoViewer)
 
-**IsoViewer**, version 2.4.0, for Linux (x86_64)  
+**IsoViewer**, version 2.4.1, for Linux (x86_64)  
 © 2026 Basic Genomics AB. All rights reserved.
 
 This page lists the third-party software components distributed with IsoViewer, together
@@ -68,6 +68,6 @@ Genomics AB's own software and is covered by the Basic Genomics [licence terms](
 
 ## 6. Scope
 
-This document was generated from the compiled IsoViewer 2.4.0 program: every library and
+This document was generated from the compiled IsoViewer 2.4.1 program: every library and
 package inside it is listed above, and the licence texts are those supplied with the
 versions it contains.

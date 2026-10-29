@@ -7,6 +7,7 @@ Python, Docker, internet access and administrator rights are not required.
 
 | Version | File | Size |
 | --- | --- | --- |
+| 2.4.1 | [isoviewer-2.4.1-linux-x86_64.tar.gz](https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.4.1-linux-x86_64.tar.gz) | 45 MiB |
 | 2.4.0 | [isoviewer-2.4.0-linux-x86_64.tar.gz](https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.4.0-linux-x86_64.tar.gz) | 45 MiB |
 | 2.3.6 | [isoviewer-2.3.6-linux-x86_64.tar.gz](https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.3.6-linux-x86_64.tar.gz) | 45 MiB |
 
@@ -26,15 +27,15 @@ What changed between versions is listed in the [Changelog](changelog.md#changelo
 Download the program and its checksum, check the download, and unpack it:
 
 ```bash
-curl -LO https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.4.0-linux-x86_64.tar.gz
-curl -LO https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.4.0-linux-x86_64.tar.gz.sha256
-sha256sum -c isoviewer-2.4.0-linux-x86_64.tar.gz.sha256
-tar -xzf isoviewer-2.4.0-linux-x86_64.tar.gz
-cd isoviewer-2.4.0-linux-x86_64
+curl -LO https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.4.1-linux-x86_64.tar.gz
+curl -LO https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.4.1-linux-x86_64.tar.gz.sha256
+sha256sum -c isoviewer-2.4.1-linux-x86_64.tar.gz.sha256
+tar -xzf isoviewer-2.4.1-linux-x86_64.tar.gz
+cd isoviewer-2.4.1-linux-x86_64
 ./isoviewer --version
 ```
 
-The check prints `OK`, and the last command prints `IsoViewer 2.4.0`. The folder also holds
+The check prints `OK`, and the last command prints `IsoViewer 2.4.1`. The folder also holds
 a README, the [licence terms](legal.md#licence-terms) and the
 [third-party notices](third-party-isoviewer.md).
 

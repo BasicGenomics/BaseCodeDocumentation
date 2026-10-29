@@ -95,16 +95,34 @@ Where this changelog starts. Earlier releases are not listed or available.
 (changelog-isoviewer)=
 ## IsoViewer
 
+### 2.4.1
+
+<span class="rerun rerun-compare"><span class="rerun-label">Reports from earlier versions</span><span class="rerun-status">Rerun for comparability</span></span>
+
+- New DTU (R) page: assign the samples to groups, then download the transcript counts, the sample
+  table and an R Markdown script that runs a differential transcript usage analysis (limma
+  diffSplice) in R.
+- Filters in the header limit the genes on the Overview, Genes and Transcript variants pages,
+  with a histogram for each filter.
+- The end-to-end share is now taken of molecules with 3′ support instead of all molecules, as in
+  the run report of the BaseCode Processing Pipeline.
+- QC pages flag samples whose values stand out from the others (with 4 or more samples). QC:
+  BaseCode adds genes detected by biotype, and compares each gene's molecule length with the
+  length of its canonical transcript.
+- Gene pages mark the canonical transcript (MANE Select or Ensembl canonical).
+- The DESeq2 and DTU scripts include a Methods section, and Discovery mode warns that it can
+  show false positives.
+
 ### 2.4.0
 
 <span class="rerun rerun-none"><span class="rerun-label">Reports from earlier versions</span><span class="rerun-status">No rerun needed</span></span>
 
-- New **DESeq2 (R)** page: choose the samples, groups and settings, then download the counts,
+- New DESeq2 (R) page: choose the samples, groups and settings, then download the counts,
   the sample table and an R Markdown script that runs DESeq2 in R.
-- Samples can be renamed in the **Samples** table.
+- Samples can be renamed in the Samples table.
 - Gene pages show overlapping genes, the other mode's transcript models, and protein domains for
   any selected transcript variants.
-- **QC: BaseCode** adds genes detected per sample, and per-sample tables for molecule length and
+- QC: BaseCode adds genes detected per sample, and per-sample tables for molecule length and
   reads per molecule.
 - The gene and transcript name filters suggest names and IDs as you type.
 - "End-to-end" replaces "full-length", as in the rest of this documentation.

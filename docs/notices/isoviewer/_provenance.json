@@ -18,5 +18,5 @@
  "zstd": "nuitka 4.3 wheel, nuitka/build/inline_copy/zstd/LICENSE.txt",
  "plotly": "https://raw.githubusercontent.com/plotly/plotly.js/v2.35.2/LICENSE + https://unpkg.com/plotly.js@2.35.2/dist/plotly.min.js.LICENSE.txt",
  "d3": "https://raw.githubusercontent.com/d3/d3/v7.9.0/LICENSE",
- "mona-sans": "IsoViewer 2.4.0 source, web/assets/fonts/mona-sans-OFL.txt"
+ "mona-sans": "IsoViewer 2.4.1 source, web/assets/fonts/mona-sans-OFL.txt"
 }

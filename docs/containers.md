@@ -28,6 +28,7 @@ Running the BaseCode IsoQuant Pipeline container is covered in
 
 | Version | File | Size |
 | --- | --- | --- |
+| 2.4.1 | [isoviewer-2.4.1-linux-x86_64.tar.gz](https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.4.1-linux-x86_64.tar.gz) | 45 MiB |
 | 2.4.0 | [isoviewer-2.4.0-linux-x86_64.tar.gz](https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.4.0-linux-x86_64.tar.gz) | 45 MiB |
 | 2.3.6 | [isoviewer-2.3.6-linux-x86_64.tar.gz](https://basecode.readthedocs.io/en/latest/downloads/isoviewer-2.3.6-linux-x86_64.tar.gz) | 45 MiB |
 

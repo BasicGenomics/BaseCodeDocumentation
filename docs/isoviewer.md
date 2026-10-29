@@ -20,22 +20,25 @@ results are, typically on the machine that ran the pipelines. See
 | **Samples** | Totals, correlation, PCA and clustering per sample. |
 | **Compare groups** | Two groups of samples compared. |
 | **DESeq2 (R)** | Prepares a DESeq2 analysis: choose groups and settings, then download what R needs to run it. |
+| **DTU (R)** | Prepares a differential transcript usage analysis in the same way, run in R with limma. |
 | **Run & provenance** | Versions, references and settings of the run. |
 
-Three settings at the top of the report apply to every page:
+Four settings at the top of the report apply to every page:
 
 - **Mode.** Reference mode shows the quantification of the existing annotation. Discovery
   mode shows the transcript models IsoQuant built from the reads.
 - **Samples.** The samples included in every figure and table.
 - **Stringency.** The minimum number of counted molecules a gene needs to count as
   quantified.
+- **Filters.** Further limits on the genes shown on the Overview, Genes and Transcript variants
+  pages, set with a histogram for each filter.
 
 A short guided tour in the report walks through these settings and the main pages. Hover any
 ⓘ for the definition of a figure.
 
 ## In the report
 
-Screenshots from a demo report with two brain and two kidney samples.
+Screenshots from a demo report with two brain-derived and two kidney-derived samples.
 
 ```{figure} images/isoviewer/overview.webp
 :class: screenshot
@@ -48,7 +51,7 @@ Screenshots from a demo report with two brain and two kidney samples.
 :class: screenshot
 :alt: Gene expression and transcript variant usage per sample on a gene page
 
-**A gene page** (PKM): expression per sample, and how each sample divides it over the
+**A gene page** (HSPA8): expression per sample, and how each sample divides it over the
 transcript variants.
 ```
 
@@ -65,6 +68,14 @@ transcript variants.
 
 **DESeq2 (R)**: assign groups and choose settings; the page then gives you the files to run
 DESeq2 in R.
+```
+
+```{figure} images/isoviewer/dtu.webp
+:class: screenshot
+:alt: The DTU page with samples assigned to two groups
+
+**DTU (R)**: the same for differential transcript usage, which asks whether a gene uses its
+transcript variants in different proportions between groups.
 ```
 
 ## Viewing and sharing a report
