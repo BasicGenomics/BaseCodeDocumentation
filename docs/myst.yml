@@ -62,7 +62,7 @@ project:
             - file: licence-texts-isoviewer.md
 site:
   title: Basic Genomics Pipelines
-  template: book-theme
+  template: https://github.com/myst-templates/book-theme/archive/23f2df5493e23dfb1d9433c8aa64c87beb4232a3.zip
   options:
     logo: images/BasicGenomics.png
     logo_dark: images/BasicGenomics_white.png
