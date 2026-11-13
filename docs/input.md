@@ -122,9 +122,7 @@ Idx_Fw1_2<br>
 Idx_Fw1_3<br>
 Idx_Fw1_4<br>
 Idx_Fw1_5<br>
-Idx_Fw1_6<br>
-Idx_Fw1_7<br>
-Idx_Fw1_8
+Idx_Fw1_6
 </td>
 </tr>
 <tr>
@@ -135,9 +133,7 @@ The second (reverse) index primer used for PCR A.<br>
 Idx_Rv1_1<br>
 Idx_Rv1_2<br>
 Idx_Rv1_3<br>
-Idx_Rv1_4<br>
-Idx_Rv1_5<br>
-Idx_Rv1_6
+Idx_Rv1_4
 </td>
 </tr>
 <tr>
@@ -151,9 +147,7 @@ Idx_Fw1_2<br>
 Idx_Fw1_3<br>
 Idx_Fw1_4<br>
 Idx_Fw1_5<br>
-Idx_Fw1_6<br>
-Idx_Fw1_7<br>
-Idx_Fw1_8
+Idx_Fw1_6
 </td>
 </tr>
 <tr>
@@ -164,9 +158,7 @@ The second (reverse) index primer used for PCR B.<br>
 Idx_Rv2_1<br>
 Idx_Rv2_2<br>
 Idx_Rv2_3<br>
-Idx_Rv2_4<br>
-Idx_Rv2_5<br>
-Idx_Rv2_6
+Idx_Rv2_4
 </td>
 </tr>
 <tr>
