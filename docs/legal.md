@@ -64,8 +64,8 @@ font is listed for the BaseCode Processing Pipeline.
 
 The species silhouettes are from [PhyloPic](https://www.phylopic.org/) and are released into
 the public domain under CC0 1.0, so no attribution is required. With thanks to their authors
-nonetheless: Chuanixn Yu (zebrafish), Bob Goldstein and Jake Warner (*C. elegans*),
-Andy Wilson (*Drosophila*) and Jake Warner (*Arabidopsis*).
+nonetheless: Chuanixn Yu (zebrafish), Bob Goldstein and Jake Warner (*C. elegans*)
+and Andy Wilson (*Drosophila*).
 
 ## Contact
 

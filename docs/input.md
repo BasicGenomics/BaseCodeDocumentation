@@ -200,9 +200,8 @@ Available genome reference and annotations:
 - Danio rerio  
 - Caenorhabditis elegans
 - Drosophila melanogaster
-- Arabidopsis thaliana
 
-<img src="images/References.png" width="800">
+<img src="images/References.png" width="686">
 
 > **IMPORTANT** The downloaded species folder **must** sit inside a folder named `genome_references/`. The parent folder can be called anything, since it is the folder you mount when starting the pipeline; this documentation calls it `BaseCode_resources/`. The species folder name (e.g. `Homo_sapiens`) is what you set as `reference` in the [configuration file](#input-config).
 
